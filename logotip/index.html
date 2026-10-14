@@ -1,0 +1,42 @@
+<!doctype html><html lang="ru"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Логотип EventMatch — варианты</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Outfit:wght@500&family=Poppins:wght@500&family=Questrial&family=Comfortaa:wght@600&family=Leckerli+One&family=Kaushan+Script&family=Courgette&family=Grand+Hotel&family=Pacifico&family=Cookie&family=Yellowtail&family=Damion&family=Satisfy&family=Dancing+Script:wght@600&family=Figtree:wght@600;700&family=Onest:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--brand:#6a3fd0;--line:#e9e9e7;--bg2:#f1f1f0;--tx2:#5f5f5c}
+body{margin:0;background:#fff;color:var(--ink);font-family:Onest,system-ui,sans-serif}
+.wrap{max-width:1360px;margin:0 auto;padding:40px 24px 64px}
+h1{font:600 28px/1.2 Onest;margin:0 0 6px}.sub{color:var(--tx2);margin:0 0 8px}
+h2{font:600 13px/1 Onest;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin:36px 0 14px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}
+.c{border:1px solid var(--line);border-radius:20px;padding:18px 20px 20px;display:flex;flex-direction:column;gap:16px}
+.n{font:600 13px Onest;color:var(--tx2)}.n b{color:var(--ink)}
+.big{display:flex;align-items:center;gap:12px;font-size:50px;line-height:1.15;white-space:nowrap;min-height:72px}
+.bar{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:8px 12px}
+.bar .logo{display:flex;align-items:center;gap:7px;font-size:25px;line-height:1;white-space:nowrap;margin-right:auto}
+.bar .lk{font:600 14px Onest;padding:10px 8px}.bar .cta{white-space:nowrap;font:600 14px Onest;background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px}
+.h{flex:none}.p{color:var(--brand)}
+.swash{position:relative;display:inline-block}.swash svg.u{position:absolute;left:4%;right:-2%;bottom:-.22em;width:96%;height:.32em;overflow:visible}
+</style></head><body><div class="wrap">
+<h1>Логотип EventMatch — варианты</h1><p class="sub">Знак — фиолетовое сердечко. Напиши номер (можно 2–3) — доведу и переведу в кривые.</p>
+<div id="out"></div></div>
+<script>
+const heart=s=>`<svg class="h" width="${s}" height="${Math.round(s*.93)}" viewBox="6 4 108 100" aria-hidden="true"><path fill="#6a3fd0" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg>`;
+const st=(f,w,ls=0)=>`font-family:'${f}';font-weight:${w};letter-spacing:${ls}em`;
+const plain=(f,w,txt,ls)=>`<span style="${st(f,w,ls)}">${txt}</span>`;
+const swash=`<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 7C30 2 62 1 98 5" fill="none" stroke="#6a3fd0" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
+const groups=[
+ ["Как weddywood — спокойная геометрия",[["Jost 500",plain("Jost",500,"eventmatch",-.01)],["Jost 400",plain("Jost",400,"eventmatch",0)],["Outfit 500",plain("Outfit",500,"eventmatch",-.01)],["Poppins 500",plain("Poppins",500,"eventmatch",-.02)],["Questrial",plain("Questrial",400,"eventmatch",0)],["Comfortaa 600",plain("Comfortaa",600,"eventmatch",-.01)]]],
+ ["Как Happy Day — кисть",[["Leckerli One",plain("Leckerli One",400,"Event Match")],["Kaushan Script",plain("Kaushan Script",400,"Event Match")],["Courgette",plain("Courgette",400,"Event Match")]]],
+ ["Как Billabong и старый Instagram — скрипт",[["Cookie",plain("Cookie",400,"EventMatch")],["Yellowtail",plain("Yellowtail",400,"EventMatch")],["Damion",plain("Damion",400,"EventMatch")],["Grand Hotel",plain("Grand Hotel",400,"EventMatch")],["Pacifico",plain("Pacifico",400,"EventMatch")],["Satisfy",plain("Satisfy",400,"EventMatch")]]],
+ ["Как Pinterest, но тоньше",[["Figtree 700",plain("Figtree",700,"EventMatch",-.03)],["Figtree 600",plain("Figtree",600,"EventMatch",-.025)],["Dancing Script 600",plain("Dancing Script",600,"EventMatch")]]],
+ ["Свои варианты — доработка шрифтов",[
+  ["Jost: «event» тонко, «match» плотнее",`<span style="${st('Jost',500,-.01)}"><span style="font-weight:400">event</span>match</span>`],
+  ["Jost: «match» фиолетовым",`<span style="${st('Jost',500,-.01)}">event<span class="p">match</span></span>`],
+  ["Jost с росчерком под словом",`<span class="swash" style="${st('Jost',500,-.01)}">eventmatch${swash}</span>`],
+  ["Скрипт + геометрия: Cookie + Jost",`<span style="font-family:Cookie;font-size:1.3em;line-height:.8">Event</span><span style="${st('Jost',500,-.01)};margin-left:.08em">match</span>`],
+  ["Courgette с росчерком",`<span class="swash" style="${st('Courgette',400)}">Event Match${swash}</span>`],
+  ["Yellowtail, «Match» фиолетовым",`<span style="${st('Yellowtail',400)}">Event<span class="p">Match</span></span>`],
+ ]],
+];
+let k=0;
+document.getElementById('out').innerHTML=groups.map(([t,items])=>`<h2>${t}</h2><div class="g">`+items.map(([name,html])=>{k++;return `<div class="c"><span class="n"><b>${k}</b> · ${name}</span><div class="big">${heart(44)}${html}</div><div class="bar"><span class="logo">${heart(24)}${html}</span><span class="lk">Работы</span><span class="lk">Войти</span><span class="cta">Создать профиль</span></div></div>`}).join('')+'</div>').join('');
+</script></body></html>
