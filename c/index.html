@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex, nofollow">
+<title>EventMatch&nbsp;— визитка, по которой видно твою работу</title>
+<meta name="description" content="Платформа для event-исполнителей: визитка с работами за 5 минут, коллеги по работам, а не по подписчикам, обучение у практиков и продажа своих курсов. Вариант главной C.">
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="preload" href="fonts/onest-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-italic-500-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__in">
+    <a class="hdr__logo hdr__grp" href="#top" aria-label="EventMatch, наверх"><img class="logo--ink" src="brand/eventmatch-logo.svg" width="163" height="19" alt=""><img class="logo--light" src="brand/eventmatch-logo-light.svg" width="163" height="19" alt=""></a>
+    <nav class="hdr__nav hdr__grp" aria-label="Разделы">
+      <span class="hdr__thumb" aria-hidden="true"></span>
+      <a href="#vizitka">Визитка</a>
+      <a href="#kollegi">Коллеги</a>
+      <a href="#obuchenie">Обучение</a>
+      <a href="#chestno">Честные правила</a>
+    </nav>
+    <div class="hdr__act hdr__grp">
+      <a class="hdr__login" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Войти</a>
+      <a class="btn btn--sm hdr__cta" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Первый экран: контактный лист, наводка на резкость -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero__pad" aria-hidden="true"></div>
+    <div class="row row--t" id="row-t" aria-hidden="true"></div>
+    <div class="hero__sp" aria-hidden="true"></div>
+    <div class="hero__c">
+      <h1 class="h1" id="hero-title">Визитка, по&nbsp;которой видно, <br>какой ты <span class="slot" id="slot" aria-hidden="true"><span class="slot__w is-on">фотограф</span><svg class="slot__line" aria-hidden="true"><path/></svg></span><span class="sr-only">исполнитель</span></h1>
+      <p class="hero__lead">Платформа для event-исполнителей: визитка с&nbsp;работами, коллеги по&nbsp;работам, обучение у&nbsp;практиков и&nbsp;продажа своих курсов.</p>
+      <form class="nick" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/" method="get" data-nick>
+        <label class="nick__field"><span class="nick__pre">eventmatch.ru/</span><input name="nick" type="text" placeholder="anya" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" aria-label="Придумай ник для адреса визитки"></label>
+        <button class="btn btn--lg" type="submit">Создать профиль</button>
+      </form>
+      <p class="nick__out" aria-hidden="true"><span>твой адрес: </span><span class="url">eventmatch.ru/<b></b></span></p>
+      <p class="hero__note">Профиль бесплатно весь первый год · место в&nbsp;выдаче не&nbsp;продаётся · вход по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID</p>
+    </div>
+    <div class="hero__sp" aria-hidden="true"></div>
+    <div class="row row--b" id="row-b" aria-hidden="true"></div>
+    <div class="hero__foot">
+      <p class="hero__sign"><svg viewBox="0 0 108 100" aria-hidden="true"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg><span>создано исполнителем, с&nbsp;любовью · кадры фотографа&nbsp;— Анастасия Агапова</span></p>
+      <button class="hero__pause" id="hero-pause" type="button" aria-label="Остановить смену слов"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="i-pause" d="M4 2.5v7M8 2.5v7"/><path class="i-play" d="M4 2.2v7.6L10 6z"/></svg></button>
+    </div>
+    <p class="sr-only">Над и&nbsp;под заголовком&nbsp;— ряды кадров, как на&nbsp;контактном листе: работы фотографа Анастасии Агаповой и&nbsp;снимки других профессий&nbsp;— визажистов, ведущих, видеографов, стилистов по&nbsp;волосам, reels-мейкеров, декораторов, моделей и&nbsp;организаторов.</p>
+  </section>
+
+  <!-- 2. Что есть в EventMatch -->
+  <section class="manifest" aria-labelledby="m-title">
+    <div class="wrap">
+      <div class="manifest__head">
+        <h2 class="manifest__h" id="m-title" data-rv>Что есть в&nbsp;EventMatch</h2>
+        <p class="manifest__p" data-rv>EventMatch создал исполнитель, поэтому здесь главное&nbsp;— работы. Профиль, поиск и&nbsp;коллеги бесплатно весь первый год. Продаёшь курсы или пресеты&nbsp;— комиссия 15% с&nbsp;продажи.</p>
+      </div>
+      <ol class="idx">
+        <li data-rv><span class="idx__n">01</span><h3 class="idx__t">Визитка за&nbsp;5&nbsp;минут</h3><p class="idx__d">Работы сеткой, услуги и&nbsp;короткий адрес <span class="url">eventmatch.ru/ник</span>.</p></li>
+        <li data-rv><span class="idx__n">02</span><h3 class="idx__t">Коллеги по&nbsp;работам</h3><p class="idx__d">Второй фотограф, замена, совместная съёмка или мастер-класс вдвоём.</p></li>
+        <li data-rv><span class="idx__n">03</span><h3 class="idx__t">Обучение у&nbsp;практиков</h3><p class="idx__d">Учишься у&nbsp;тех, кто сам работает на&nbsp;событиях.</p></li>
+        <li data-rv><span class="idx__n">04</span><h3 class="idx__t">Продажа своего</h3><p class="idx__d">Курсы, мастер-классы, эфиры и&nbsp;пресеты. Курс из&nbsp;записи эфира соберёт ИИ.</p></li>
+        <li data-rv><span class="idx__n">05</span><h3 class="idx__t">Метка покупателя</h3><p class="idx__d">На&nbsp;каждом проданном файле&nbsp;— код того, кто его купил.</p></li>
+        <li data-rv><span class="idx__n">06</span><h3 class="idx__t">Честный рейтинг</h3><p class="idx__d">Место в&nbsp;выдаче не&nbsp;продаётся, отзывы оставляют только купившие.</p></li>
+      </ol>
+      <div class="manifest__act" data-rv>
+        <a class="btn btn--sm" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+        <a class="link" href="#chestno">Как устроен рейтинг&nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Видоискатель -->
+  <section class="vf" id="vf" aria-labelledby="vf-title" data-dark>
+    <div class="vf__stage" id="vf-stage">
+      <img class="vf__amb" src="img/blur/ag-46-l.webp" width="250" height="375" alt="" loading="lazy">
+      <div class="vf__pic">
+        <img class="vf__soft" src="img/blur/ag-46-l.webp" width="250" height="375" alt="" loading="lazy">
+        <img class="vf__sharp" src="img/t/ag-46-1000.webp" width="1000" height="1500" alt="Пара целуется на&nbsp;танцполе в&nbsp;дыму под контровым светом. Работа Анастасии Агаповой" loading="lazy" decoding="async">
+        <div class="vf__frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="vf__text">
+        <h2 class="h2 vf__h" id="vf-title">Твоя работа&nbsp;— <em>в&nbsp;фокусе</em></h2>
+        <p class="vf__lead">Ничего лишнего вокруг: визитка показывает твою работу такой, какая она&nbsp;есть.</p>
+      </div>
+      <figure class="vf__quote">
+        <blockquote>«Мои фотографии живые и&nbsp;романтичные, а&nbsp;каждая съёмка&nbsp;— отдельная и&nbsp;неповторимая история, к&nbsp;которой я&nbsp;отношусь с&nbsp;большим трепетом»</blockquote>
+        <figcaption class="vf__card glass">
+          <img class="ava" src="img/t/nastya-96.webp" width="48" height="48" alt="">
+          <span class="vf__who">
+            <span class="vf__name">Анастасия Агапова</span>
+            <span class="vf__role">свадебный и&nbsp;женский фотограф</span>
+            <span class="vf__city">Санкт&#8209;Петербург, Ростов&#8209;на&#8209;Дону, Москва</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. Визитка за 5 минут -->
+  <section class="sec build" id="vizitka" aria-labelledby="b-title">
+    <div class="wrap build__grid">
+      <div class="build__demo">
+        <div class="vcard" id="vcard" data-step="0" aria-hidden="true">
+          <div class="vcard__login">
+            <svg class="vcard__mark" viewBox="0 0 108 100"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg>
+            <p class="vcard__lt">Вход в&nbsp;EventMatch</p>
+            <span class="vcard__lb is-pick">Номер телефона</span>
+            <span class="vcard__lb">VK ID</span>
+            <span class="vcard__lb">Яндекс ID</span>
+          </div>
+          <div class="vcard__side">
+            <div class="vcard__top">
+              <span class="vcard__ava"><svg viewBox="0 0 56 56"><circle cx="28" cy="22" r="9.5"/><path d="M8 56c1.5-11.5 9.5-18 20-18s18.5 6.5 20 18z"/></svg></span>
+              <span class="vcard__status"><span class="vcard__draft">черновик</span><span class="vcard__pub"><svg viewBox="0 0 108 100"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg>опубликовано</span></span>
+            </div>
+            <p class="vcard__name"><span class="type" data-text="Анастасия Агапова"></span></p>
+            <p class="vcard__meta">свадебный и&nbsp;женский фотограф</p>
+            <p class="vcard__city">Санкт&#8209;Петербург · Ростов&#8209;на&#8209;Дону · Москва</p>
+            <p class="src"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="2"/><path d="M4 6.2l1.4 1.4L8.2 4.8"/></svg>имя, город и&nbsp;услуги&nbsp;— со&nbsp;скриншота</p>
+            <p class="vcard__lbl">Услуги</p>
+            <p class="vcard__svc"><span>Свадебная съёмка</span><span>Женская съёмка</span></p>
+            <p class="vcard__url url">eventmatch.ru/<span class="type" data-text="ник"></span></p>
+            <div class="vcard__btns"><span class="vcard__btn vcard__btn--pub">Опубликовать</span><span class="vcard__btn vcard__btn--share">Поделиться</span></div>
+          </div>
+          <div class="vcard__grid" id="vcard-grid"></div>
+          <p class="vcard__toast">Ссылка скопирована</p>
+        </div>
+        <p class="build__cap">Пример визитки · работы фотографа Анастасии Агаповой</p>
+      </div>
+      <div class="build__txt">
+        <p class="eyebrow" data-rv>Визитка</p>
+        <h2 class="h2" id="b-title" data-rv>Готова за&nbsp;5&nbsp;минут</h2>
+        <ol class="steps" id="steps">
+          <li class="step"><button type="button" class="step__h"><span class="step__n">1</span>Войди по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID</button><div class="step__d"><p>Выбери, как удобнее, и&nbsp;сразу переходи к&nbsp;работам.</p></div></li>
+          <li class="step"><button type="button" class="step__h"><span class="step__n">2</span>Покажи, что ты делаешь</button><div class="step__d"><p>Загрузи 10–30 лучших работ или 3–5&nbsp;скриншотов своей страницы&nbsp;— по&nbsp;ним имя, город и&nbsp;услуги заполнятся сами.</p></div></li>
+          <li class="step"><button type="button" class="step__h"><span class="step__n">3</span>Придумай ник</button><div class="step__d"><p>Адрес будет коротким: <span class="url">eventmatch.ru/ник</span>.</p></div></li>
+          <li class="step"><button type="button" class="step__h"><span class="step__n">4</span>Проверь черновик и&nbsp;опубликуй</button><div class="step__d"><p>У&nbsp;каждого поля видно, откуда оно взято. Без твоего нажатия ничего не&nbsp;публикуется.</p></div></li>
+          <li class="step"><button type="button" class="step__h"><span class="step__n">5</span>Поставь ссылку в&nbsp;шапку профиля</button><div class="step__d"><p>Визитку увидит каждый, кто откроет твою страницу в&nbsp;соцсетях.</p></div></li>
+        </ol>
+        <div class="build__foot" data-rv>
+          <a class="btn" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+          <p class="timer"><span class="tnum" id="timer">0:00</span> из&nbsp;5:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Профессии -->
+  <section class="sec sec--tint roles" id="roles" aria-labelledby="r-title">
+    <div class="wrap roles__grid">
+      <div class="roles__l">
+        <p class="eyebrow" data-rv>Для кого</p>
+        <h2 class="h2" id="r-title" data-rv>Девять профессий&nbsp;— <br>один праздник</h2>
+        <ul class="plist" id="plist"></ul>
+      </div>
+      <div class="roles__r">
+        <div class="scene" id="scene">
+          <div class="scene__l"><img class="scene__bg" alt=""><img class="scene__img" alt=""></div>
+          <div class="scene__l"><img class="scene__bg" alt=""><img class="scene__img" alt=""></div>
+          <p class="scene__cr glass" id="scene-cr">фото: Анастасия Агапова</p>
+          <a class="scene__tag glass" id="scene-tag" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#feed"><span id="scene-name">Фотографы</span> · смотреть работы&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Поиск по работам -->
+  <section class="sec search" id="poisk" aria-labelledby="s-title">
+    <div class="wrap">
+      <p class="eyebrow center" data-rv>Поиск</p>
+      <h2 class="h2 center" id="s-title" data-rv>Ищи <em>по&nbsp;работам</em>, а&nbsp;не&nbsp;по&nbsp;подписчикам</h2>
+      <div class="sbar" data-rv>
+        <div class="sbar__field glass" aria-hidden="true">
+          <svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          <span class="sbar__q" id="sbar-q">совместная съёмка</span>
+        </div>
+      </div>
+      <div class="sq" id="sq" role="group" aria-label="Примеры запросов" data-rv></div>
+      <div class="seg" id="seg" role="group" aria-label="Порядок выдачи" data-rv>
+        <span class="seg__thumb" aria-hidden="true"></span>
+        <button type="button" aria-pressed="true">Подходящие</button>
+        <button type="button" aria-pressed="false">Свежие</button>
+        <button type="button" aria-pressed="false"><i class="seg__dot"></i>Новые авторы</button>
+      </div>
+      <div class="sgrid" id="sgrid"></div>
+      <div class="search__foot">
+        <p class="cap">«Новые авторы»&nbsp;— работы тех, кто только пришёл: первое время они получают показы бесплатно.</p>
+        <a class="link" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#feed">смотреть работы&nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Коллеги -->
+  <section class="sec sec--tint colleagues" id="kollegi" aria-labelledby="k-title">
+    <div class="wrap col__grid">
+      <div class="constel" id="constel" aria-hidden="true">
+        <svg class="constel__lines" viewBox="0 0 640 520"></svg>
+        <div class="constel__me"><svg viewBox="0 0 108 100"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg><span>ты</span></div>
+      </div>
+      <div class="col__txt">
+        <p class="eyebrow" data-rv>Коллеги</p>
+        <h2 class="h2" id="k-title" data-rv>Коллеги, с&nbsp;которыми хочется работать</h2>
+        <p class="lead" data-rv>Второй фотограф на&nbsp;дату, замена, совместная съёмка или мастер-класс вдвоём. Ищешь по&nbsp;работам&nbsp;— и&nbsp;видишь, как человек работает, ещё до&nbsp;первого сообщения.</p>
+        <ul class="ctypes" id="ctypes">
+          <li data-rv><button type="button" aria-pressed="false" data-hl="photo video"><span>Второй фотограф</span><i>на&nbsp;дату</i></button></li>
+          <li data-rv><button type="button" aria-pressed="false" data-hl="photo host makeup"><span>Замена</span><i>если заболеешь</i></button></li>
+          <li data-rv><button type="button" aria-pressed="false" data-hl="model makeup hair decor"><span>Совместная съёмка</span><i class="is-accent">вдвоём</i></button></li>
+          <li data-rv><button type="button" aria-pressed="false" data-hl="photo model reels"><span>Мастер-класс вдвоём</span><i>учить вместе</i></button></li>
+        </ul>
+        <p class="col__note" data-rv>Пиши прямо с&nbsp;визитки, там есть кнопка <span class="token"><svg viewBox="0 0 108 100" aria-hidden="true"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg>Предложить сотрудничество</span></p>
+        <a class="link" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#feed" data-rv>смотреть работы&nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Учись и продавай -->
+  <section class="orbit" id="obuchenie" aria-labelledby="o-title">
+    <div class="orbit__c">
+      <p class="eyebrow center" data-rv>Обучение</p>
+      <h2 class="h2 h2--xl center" id="o-title" data-rv>Учись у&nbsp;практиков. <br>Продавай <em>своё</em></h2>
+      <p class="lead center" data-rv>Курсы, мастер-классы, эфиры и&nbsp;пресеты от&nbsp;тех, кто сам работает на&nbsp;событиях. Цену своему курсу ставишь ты.</p>
+      <div class="center" data-rv><a class="btn" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a></div>
+    </div>
+    <div class="ocard ocard--l1" style="--dx:-56px;--sp:-.25"><img src="img/t/cover-model.webp" width="560" height="350" alt="" loading="lazy"><p class="ocard__k">Мастер-класс</p><p class="ocard__t">Свет в&nbsp;студии</p><p class="ocard__m">онлайн · 2&nbsp;ч</p></div>
+    <div class="ocard ocard--l2" style="--dx:-40px;--sp:.2"><div class="ocard__sw" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><p class="ocard__k">Пресеты</p><p class="ocard__t">Плёночные тона</p><p class="ocard__m">12&nbsp;пресетов</p></div>
+    <div class="ocard ocard--r1" style="--dx:56px;--sp:-.15"><img src="img/t/cover-video.webp" width="560" height="350" alt="" loading="lazy"><p class="ocard__k">Эфир</p><p class="ocard__t">Разбор портфолио</p><p class="ocard__m">вживую, потом в&nbsp;записи</p></div>
+    <div class="ocard ocard--r2" style="--dx:44px;--sp:.3"><img src="img/t/cover-host.webp" width="560" height="350" alt="" loading="lazy"><p class="ocard__k">Курс</p><p class="ocard__t">Ведущий: первые пять минут</p><p class="ocard__m">6&nbsp;уроков</p></div>
+    <div class="ocard ocard--pdf ocard--b1" style="--dx:-30px;--sp:.1"><div class="ocard__doc" aria-hidden="true"><b>Тайминг</b><i></i><i></i><i></i><i></i></div><p class="ocard__k">PDF</p><p class="ocard__t">Тайминг съёмочного дня</p><p class="ocard__m">чек-лист</p></div>
+    <div class="ocard ocard--b2" style="--dx:36px;--sp:-.2"><img src="img/t/cover-makeup2.webp" width="560" height="350" alt="" loading="lazy"><p class="ocard__k">Курс</p><p class="ocard__t">Свадебный макияж</p><p class="ocard__m">6&nbsp;уроков · 3&nbsp;задания</p><p class="ocard__ai">собран ИИ из&nbsp;эфира, проверен автором</p></div>
+  </section>
+
+  <!-- 9. Эфир → курс -->
+  <section class="sec sec--tint live" id="efir" aria-labelledby="l-title">
+    <div class="wrap">
+      <div class="live__head">
+        <div>
+          <p class="eyebrow" data-rv>ИИ-конструктор курса</p>
+          <h2 class="h2" id="l-title" data-rv>Эфир прошёл&nbsp;— курс готов</h2>
+        </div>
+        <p class="lead live__lead" data-rv>Загрузи запись до&nbsp;3&nbsp;часов или выбери прошедший эфир. ИИ разобьёт её на&nbsp;уроки и&nbsp;задания, а&nbsp;ты проверишь и&nbsp;опубликуешь.</p>
+      </div>
+      <div class="lscene" id="lscene">
+        <img class="lscene__amb" src="img/blur/live-makeup.webp" width="120" height="180" alt="" loading="lazy">
+        <figure class="lrec" style="--py:-.6">
+          <img class="lrec__ph" src="img/t/live-makeup-760.webp" width="760" height="1140" alt="Визажист наносит тени кистью" loading="lazy" decoding="async">
+          <figcaption class="lcard glass lcard--rec">
+            <p class="lcard__k"><i class="rec"></i>Запись эфира</p>
+            <p class="lcard__t tnum">1:42:10</p>
+            <span class="wave" id="wave" aria-hidden="true"></span>
+          </figcaption>
+        </figure>
+        <div class="lai" aria-hidden="true">
+          <svg viewBox="0 0 120 24"><path d="M2 12h110M104 5l8 7-8 7"/></svg>
+          <span>ИИ</span>
+        </div>
+        <div class="lcard glass lcard--course" style="--py:.5">
+          <p class="lcard__k">Курс готов</p>
+          <p class="lcard__t">6&nbsp;уроков · 3&nbsp;задания</p>
+          <ol class="lessons">
+            <li><i></i>Кожа перед съёмкой</li>
+            <li><i></i>Тон под свет вспышки</li>
+            <li><i></i>Глаза крупным планом</li>
+            <li><i></i>Стойкость на&nbsp;весь день</li>
+            <li class="lessons__more">ещё 2&nbsp;урока и&nbsp;3&nbsp;задания</li>
+          </ol>
+          <span class="lcard__btn">Проверить и&nbsp;опубликовать</span>
+        </div>
+        <div class="lcard glass lcard--mark" id="lmark" style="--py:1">
+          <div class="mfile">
+            <img src="img/t/cover-model.webp" width="560" height="350" alt="Кадр из&nbsp;мастер-класса «Свет в&nbsp;студии»" loading="lazy">
+            <svg class="mfile__wm" aria-hidden="true"><defs><pattern id="wm" width="150" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(-28)"><text x="0" y="22">покупатель · код 7F3K-21</text></pattern></defs><rect width="100%" height="100%" fill="url(#wm)"/></svg>
+          </div>
+          <p class="lcard__k">Метка покупателя</p>
+          <p class="mfile__d">На&nbsp;каждом проданном файле&nbsp;— метка с&nbsp;кодом покупателя. Если файл утечёт, по&nbsp;метке видно, чей&nbsp;он.</p>
+          <button type="button" class="lcard__btn lcard__btn--ghost" id="lmark-btn" aria-pressed="false">Показать метку</button>
+        </div>
+      </div>
+      <p class="cap live__cap" data-rv>ИИ бесплатно соберёт твой первый курс из&nbsp;записи до&nbsp;3&nbsp;часов.</p>
+    </div>
+  </section>
+
+  <!-- 10. Честные правила -->
+  <section class="sec honest" id="chestno" aria-labelledby="h-title">
+    <div class="wrap">
+      <p class="eyebrow" data-rv>Честные правила</p>
+      <h2 class="h2" id="h-title" data-rv>Выдачу двигают работы, <em>а&nbsp;не&nbsp;деньги</em></h2>
+      <p class="honest__p" data-rv>Место в&nbsp;выдаче не&nbsp;продаётся ни&nbsp;за&nbsp;какие деньги. Отзывы, ответы и&nbsp;правила выдачи&nbsp;— на&nbsp;виду у&nbsp;всех.</p>
+      <div class="nums" id="nums">
+        <div class="num" data-rv><p class="num__v">0<small>мест</small></p><p class="num__d">в&nbsp;выдаче можно купить. Выше поднимают работы и&nbsp;отзывы.</p></div>
+        <div class="num" data-rv style="--d:120ms"><p class="num__v"><span id="n15">15</span><small>%</small></p><p class="num__d">комиссия только с&nbsp;продаж курсов и&nbsp;товаров.</p></div>
+        <div class="num" data-rv style="--d:240ms"><p class="num__v">1<small>год</small></p><p class="num__d">профиль, поиск и&nbsp;коллеги бесплатно.</p></div>
+      </div>
+      <div class="tokens" id="tokens">
+        <div class="tk">
+          <div class="tk__card"><span class="tok">Продажа <b>3&nbsp;000&nbsp;₽</b></span><span class="tok__ar">↓</span><span class="tok">комиссия <b>450&nbsp;₽</b></span></div>
+          <p class="tk__h">Комиссия видна в&nbsp;каждой продаже</p><p class="tk__d">Нет продаж&nbsp;— нет комиссии.</p>
+        </div>
+        <div class="tk">
+          <div class="tk__card"><span class="tok"><i class="tok__ava"></i>@ник: покупка курса</span><span class="tok__ar">↓</span><span class="tok">отзыв</span><span class="tok__ar">↓</span><span class="tok tok--ink">ответ автора</span></div>
+          <p class="tk__h">Отзывы только от&nbsp;купивших</p><p class="tk__d">На&nbsp;любой отзыв можно ответить.</p>
+        </div>
+        <div class="tk">
+          <div class="tk__card"><span class="tok tok--plain">через 2&nbsp;месяца</span><span class="tok">Помогло в&nbsp;работе?</span><span class="tok__row"><span class="tok tok--sm">да</span><span class="tok tok--sm">частично</span><span class="tok tok--sm">нет</span></span></div>
+          <p class="tk__h">Второй вопрос через 2&nbsp;месяца</p><p class="tk__d">Через время ответ честнее, чем сразу после курса.</p>
+        </div>
+        <div class="tk">
+          <div class="tk__card"><span class="tok tok--plain">выдача</span><span class="tok">Подходящие</span><span class="tok">Свежие</span><span class="tok"><i class="seg__dot"></i>Новые авторы</span></div>
+          <p class="tk__h">Новым авторам&nbsp;— показы бесплатно</p><p class="tk__d">Правила выдачи публичны&nbsp;— их может прочитать каждый.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Петля роста и партнёрка -->
+  <section class="sec sec--tint loop" id="partneram" aria-labelledby="p-title">
+    <div class="wrap">
+      <p class="eyebrow center" data-rv>Партнёрам</p>
+      <h2 class="h2 center" id="p-title" data-rv>Растёшь вместе с&nbsp;коллегами</h2>
+      <div class="track" id="track" data-rv>
+        <svg class="track__svg" viewBox="0 0 1100 340" aria-hidden="true">
+          <defs><marker id="chev" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M3 2l4 3-4 3"/></marker></defs>
+          <rect class="track__out" x=".5" y=".5" width="1099" height="339" rx="169.5"/>
+          <path class="track__in" d="M170 22H930A148 148 0 0 1 930 318H170A148 148 0 0 1 170 22Z"/>
+          <path class="track__ar" d="M540 22h2" marker-end="url(#chev)"/>
+          <path class="track__ar" d="M560 318h-2" marker-end="url(#chev)"/>
+          <path class="track__ar" d="M1077 168v4" marker-end="url(#chev)"/>
+          <path class="track__ar" d="M23 172v-4" marker-end="url(#chev)"/>
+        </svg>
+        <span class="track__heart" id="track-heart" aria-hidden="true"><svg viewBox="0 0 108 100"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg></span>
+        <ol class="track__labels">
+          <li style="left:330px;top:22px" data-at=".065">Визитка за&nbsp;5&nbsp;минут</li>
+          <li style="left:740px;top:22px" data-at=".24">Коллеги находят тебя по&nbsp;работам</li>
+          <li style="left:770px;top:318px" data-at=".565">Работаешь с&nbsp;коллегами</li>
+          <li style="left:330px;top:318px" data-at=".745">Учишь и&nbsp;продаёшь своё</li>
+        </ol>
+        <div class="track__c">
+          <p class="track__h">Зови коллег&nbsp;— получай 20% от&nbsp;дохода платформы с&nbsp;каждого приглашённого</p>
+          <p class="track__d">24&nbsp;месяца с&nbsp;даты регистрации коллеги. Процент идёт из&nbsp;дохода платформы, а&nbsp;не&nbsp;из&nbsp;заработка коллеги.</p>
+          <a class="btn" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Финал -->
+  <section class="final" id="final" aria-labelledby="f-title">
+    <div class="wrap center">
+      <h2 class="h2 h2--xl final__h" id="f-title">Создано исполнителем&nbsp;— <br><span class="final__love"><em>с&nbsp;любовью</em><svg class="final__line" id="final-line" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#6A3FD0"/><stop offset="1" stop-color="#A88BEA"/></linearGradient></defs><path class="final__path" stroke="url(#lg)"/><g class="final__hg"><path class="final__path final__heart" stroke="url(#lg)"/><path class="final__fill"/></g></svg></span></h2>
+      <p class="final__sub">Займи свой ник, пока он свободен</p>
+      <form class="nick nick--c" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/" method="get" data-nick>
+        <label class="nick__field"><span class="nick__pre">eventmatch.ru/</span><input name="nick" type="text" placeholder="ник" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" aria-label="Придумай ник для адреса визитки"></label>
+        <button class="btn btn--lg" type="submit">Создать профиль</button>
+      </form>
+      <p class="nick__out" aria-hidden="true"><span>твой адрес: </span><span class="url">eventmatch.ru/<b></b></span></p>
+      <p class="final__note">Вход по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <a href="#top" class="foot__logo" aria-label="EventMatch, наверх"><img src="brand/eventmatch-logo.svg" width="137" height="16" alt="" loading="lazy"></a>
+    <nav class="foot__nav" aria-label="Подвал">
+      <a href="#vizitka">Визитка</a><a href="#kollegi">Коллеги</a><a href="#obuchenie">Обучение</a><a href="#chestno">Честные правила</a><a href="#partneram">Партнёрам</a>
+    </nav>
+    <p class="foot__love"><svg viewBox="0 0 108 100" aria-hidden="true"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></svg>EventMatch создан с&nbsp;любовью</p>
+  </div>
+</footer>
+
+<div class="variant" role="note">Прототип · вариант C · <a href="../" data-variant="a">A</a> · <a href="../b/" data-variant="b">B</a></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
