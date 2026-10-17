@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex, nofollow">
+<title>EventMatch&nbsp;— визитка, по&nbsp;которой видно твою работу</title>
+<meta name="description" content="EventMatch&nbsp;— платформа для event-исполнителей, созданная исполнителем: визитка с&nbsp;работами за&nbsp;5&nbsp;минут, коллеги по&nbsp;работам, обучение у&nbsp;практиков и&nbsp;продажа своих курсов.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/unbounded-300-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/onest-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="heart" viewBox="0 0 108 100"><path transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/></symbol>
+    <symbol id="tick" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="lock" viewBox="0 0 12 12"><rect x="2.5" y="5" width="7" height="5.5" rx="1.2" fill="none" stroke="currentColor"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">К&nbsp;содержанию</a>
+
+<header class="hdr" id="hdr">
+  <div class="hdr__in">
+    <a class="hdr__logo" href="#top" aria-label="EventMatch, наверх"><img src="brand/eventmatch-logo.svg" width="146" height="17" alt=""></a>
+    <nav class="hdr__nav" aria-label="Разделы">
+      <a href="#vizitka">Визитка</a>
+      <a href="#kollegi">Коллеги</a>
+      <a href="#obuchenie">Обучение</a>
+      <a href="#chestno">Честные правила</a>
+      <a href="#dengi">Деньги</a>
+    </nav>
+    <div class="hdr__act">
+      <a class="hdr__login" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Войти</a>
+      <a class="btn btn--sm" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1. Первый экран: контактный лист с наводкой на резкость -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="sheet sheet--t" id="sheet-t" aria-hidden="true"></div>
+
+  <div class="hero__c">
+    <h1 class="h1" id="hero-title">Визитка, по&nbsp;которой видно, <br>какой ты <span class="slot" id="slot" aria-hidden="true"><span class="slot__z">фотограф</span><span class="slot__w is-on">фотограф</span></span><span class="sr-only">исполнитель</span></h1>
+    <p class="hero__lead">EventMatch&nbsp;— платформа для тех, кто делает события. Визитка с&nbsp;работами за&nbsp;5&nbsp;минут, коллеги для совместной работы, обучение у&nbsp;практиков и&nbsp;продажа своих курсов.</p>
+    <form class="nick" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding" method="get" data-nick>
+      <label class="nick__field"><span class="nick__pre">eventmatch.ru/</span><input name="nick" type="text" placeholder="твой-ник" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" aria-label="Придумай ник для адреса визитки"></label>
+      <button class="btn btn--lg" type="submit">Создать профиль</button>
+    </form>
+    <p class="hero__note">Профиль, поиск и&nbsp;коллеги <b>бесплатно весь первый год</b><span class="dot" aria-hidden="true"></span>вход по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID</p>
+  </div>
+
+  <div class="sheet sheet--b" id="sheet-b" aria-hidden="true"></div>
+
+  <div class="hero__foot">
+    <p class="hero__credit">свадебные кадры&nbsp;— Анастасия Агапова</p>
+    <button class="pause" id="hero-pause" type="button" aria-pressed="false" aria-label="Пауза смены кадров"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="i-pause" d="M4 2.5v7M8 2.5v7"/><path class="i-play" d="M4 2.2v7.6L10 6z"/></svg></button>
+  </div>
+  <p class="sr-only">Над и&nbsp;под заголовком&nbsp;— ряды кадров, как на&nbsp;контактном листе: работы фотографа Анастасии Агаповой и&nbsp;снимки других профессий. Резкими по&nbsp;очереди становятся кадры фотографа, визажиста, ведущего, видеографа, reels-мейкера, стилиста по&nbsp;волосам, декоратора и&nbsp;организатора.</p>
+</section>
+
+<!-- 2. Для кого и что внутри -->
+<section class="sec who" id="who" aria-labelledby="who-title">
+  <div class="wrap">
+    <p class="label" data-rv>Для кого</p>
+    <h2 class="sr-only" id="who-title">Для кого EventMatch</h2>
+    <p class="who__list" id="who-list" data-rv>
+      <span class="pw" data-img="img/t/f-ag-03-280.webp">Фотографы</span>, <span class="pw" data-img="img/t/f-r-video-280.webp">видеографы</span>, <span class="pw" data-img="img/t/f-r-reels2-280.webp">reels&#8209;мейкеры</span>, <span class="pw" data-img="img/t/f-r-host-280.webp">ведущие</span>, <span class="pw" data-img="img/t/f-r-makeup2-280.webp">визажисты</span>, <span class="pw" data-img="img/t/f-r-hair-280.webp">стилисты по&nbsp;волосам</span>, <span class="pw" data-img="img/t/f-r-model-280.webp">модели</span>, <span class="pw" data-img="img/t/f-r-organizer-280.webp">организаторы</span> и&nbsp;<span class="pw" data-img="img/t/f-r-decor-280.webp">декораторы</span><span class="who__tail">&nbsp;— все, кто делает событие</span>
+    </p>
+    <div class="peek" id="peek" aria-hidden="true"><img src="img/t/f-ag-03-280.webp" alt="" width="280" height="350" decoding="async"></div>
+
+    <ol class="vals">
+      <li class="vals__i" data-rv><a href="#vizitka"><span class="vals__n">01</span><b>Визитка за&nbsp;5&nbsp;минут</b><span>Работы, услуги и&nbsp;адрес <span class="nw">eventmatch.ru/ник</span></span></a></li>
+      <li class="vals__i" data-rv><a href="#kollegi"><span class="vals__n">02</span><b>Коллеги по&nbsp;работам</b><span>Второй фотограф, замена, совместная съёмка</span></a></li>
+      <li class="vals__i" data-rv><a href="#obuchenie"><span class="vals__n">03</span><b>Обучение у&nbsp;практиков</b><span>И&nbsp;продажа своих курсов, эфиров и&nbsp;пресетов</span></a></li>
+      <li class="vals__i" data-rv><a href="#chestno"><span class="vals__n">04</span><b>Честные правила</b><span>Место в&nbsp;выдаче не&nbsp;продаётся</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3. Визитка за 5 минут -->
+<section class="sec viz" id="vizitka" aria-labelledby="viz-title">
+  <div class="wrap viz__grid">
+    <div class="viz__txt">
+      <p class="label" data-rv>Визитка</p>
+      <h2 class="h2" id="viz-title" data-rv>Готова за&nbsp;5&nbsp;минут</h2>
+      <p class="lead" data-rv>Работы сеткой, услуги и&nbsp;короткий адрес. Одна ссылка, по&nbsp;которой видно, как ты&nbsp;работаешь.</p>
+      <ol class="steps" id="steps" data-rv>
+        <li><button class="step is-on" type="button" data-hl="1" aria-pressed="true"><span class="step__n">1</span><span class="step__t"><b>Войди</b> по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID.</span><i class="step__bar" aria-hidden="true"></i></button></li>
+        <li><button class="step" type="button" data-hl="2" aria-pressed="false"><span class="step__n">2</span><span class="step__t"><b>Покажи, что делаешь:</b> 10–30 работ с&nbsp;телефона, скриншоты своей страницы в&nbsp;соцсетях или ссылку на&nbsp;сайт.</span><i class="step__bar" aria-hidden="true"></i></button></li>
+        <li><button class="step" type="button" data-hl="3" aria-pressed="false"><span class="step__n">3</span><span class="step__t"><b>Проверь черновик.</b> Имя, город и&nbsp;услуги соберутся сами&nbsp;— у&nbsp;каждого поля видно, откуда оно взято.</span><i class="step__bar" aria-hidden="true"></i></button></li>
+        <li><button class="step" type="button" data-hl="4" aria-pressed="false"><span class="step__n">4</span><span class="step__t"><b>Придумай ник и&nbsp;опубликуй.</b> Без твоей кнопки ничего не&nbsp;публикуется.</span><i class="step__bar" aria-hidden="true"></i></button></li>
+      </ol>
+      <div class="viz__act" data-rv>
+        <a class="btn" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+      </div>
+    </div>
+
+    <div class="win" id="win" data-rv role="img" aria-label="Визитка Анастасии Агаповой на&nbsp;EventMatch: фото, профессия, города и&nbsp;сетка работ">
+      <div class="win__bar">
+        <i></i><i></i><i></i>
+        <span class="win__url" data-part="4"><svg width="10" height="10"><use href="#lock"/></svg>eventmatch.ru/<b>agapova</b><span class="win__tag">ссылку&nbsp;— в&nbsp;шапку профиля</span></span>
+      </div>
+      <div class="win__body">
+        <div class="win__head">
+          <div class="win__id" data-part="1">
+            <img class="win__ava" src="img/t/nastya-160.webp" width="64" height="64" alt="">
+            <div class="win__who"><b>Анастасия Агапова</b><span class="win__role">фотограф</span></div>
+            <span class="win__tag">профиль создан</span>
+          </div>
+          <div class="win__btns"><span class="pill pill--ink">Написать</span><span class="pill pill--line">Предложить сотрудничество</span></div>
+        </div>
+        <p class="win__meta" data-part="3"><span>Свадьбы и&nbsp;женский портрет</span><span>Санкт&#8209;Петербург · Ростов&#8209;на&#8209;Дону · Москва</span><span class="win__tag">из&nbsp;скриншота шапки профиля</span></p>
+        <div class="win__tabs"><span class="is-on">Работы</span><span>Услуги</span><span>Контакты</span></div>
+        <div class="win__grid" data-part="2">
+          <img src="img/t/f-ag-54-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-33-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-66-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-09-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-52-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-18-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-41-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <img src="img/t/f-ag-40-280.webp" width="280" height="350" alt="" loading="lazy" decoding="async">
+          <span class="win__tag">работы&nbsp;— прямо с&nbsp;телефона</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Коллеги: поиск по работам -->
+<section class="sec kol" id="kollegi" aria-labelledby="kol-title">
+  <div class="wrap">
+    <div class="kol__top">
+    <div class="head">
+      <p class="label" data-rv>Коллеги</p>
+      <h2 class="h2" id="kol-title" data-rv>Ищи по&nbsp;работам, <br>а&nbsp;не&nbsp;по&nbsp;подписчикам</h2>
+      <p class="lead" data-rv>Второй фотограф на&nbsp;дату, замена, совместная съёмка или мастер&#8209;класс вдвоём. Видно, как человек работает, ещё до&nbsp;первого сообщения.</p>
+    </div>
+    <div class="find" data-rv>
+      <div class="sbar" aria-hidden="true">
+        <svg class="sbar__i" width="20" height="20"><use href="#search"/></svg>
+        <span class="sbar__q" id="sbar-q">совместная съёмка</span><i class="sbar__caret"></i>
+      </div>
+      <div class="qchips" id="qchips" role="group" aria-label="Примеры запросов">
+        <button type="button" class="qchip is-on" aria-pressed="true" data-q="0">совместная съёмка</button>
+        <button type="button" class="qchip" aria-pressed="false" data-q="1">свадебный репортаж</button>
+        <button type="button" class="qchip" aria-pressed="false" data-q="2">женский портрет</button>
+      </div>
+    </div>
+    </div>
+    <ul class="res" id="res" data-rv aria-label="Результаты поиска"></ul>
+    <div class="kol__foot" data-rv>
+      <p class="note">Предложить сотрудничество можно прямо с&nbsp;визитки коллеги. Здесь только исполнители&nbsp;— друг для друга.</p>
+      <a class="link" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#feed">Смотреть работы <svg width="18" height="18" aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Обучение: вкладки -->
+<section class="sec learn" id="obuchenie" aria-labelledby="learn-title">
+  <div class="wrap">
+    <div class="learn__head">
+      <div>
+        <p class="label label--sky" data-rv>Обучение</p>
+        <h2 class="h2" id="learn-title" data-rv>Учись у&nbsp;практиков. <br>Продавай своё</h2>
+      </div>
+      <p class="lead" data-rv>Курсы, мастер&#8209;классы, эфиры и&nbsp;пресеты от&nbsp;тех, кто сам работает на&nbsp;событиях каждые выходные.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Обучение и&nbsp;продажа" data-rv>
+      <button class="tab is-on" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" tabindex="0" type="button">Учиться</button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1" type="button">Продавать своё</button>
+      <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1" type="button">Курс из&nbsp;эфира</button>
+    </div>
+
+    <div class="panels" data-rv>
+      <!-- Учиться -->
+      <div class="panel is-on" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+        <div class="lcards">
+          <article class="lc">
+            <div class="lc__pic lc__pic--light" aria-hidden="true">
+              <svg class="lplan" viewBox="0 0 280 210" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <radialGradient id="lp-glow" cx="0" cy="0.5" r="0.95"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".42"/><stop offset=".45" stop-color="#ffc979" stop-opacity=".1"/><stop offset="1" stop-color="#ffc979" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="lp-ray" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffe6bf" stop-opacity=".34"/><stop offset="1" stop-color="#ffe6bf" stop-opacity="0"/></linearGradient>
+                  <linearGradient id="lp-cone" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#8fb0ff" stop-opacity=".5"/><stop offset="1" stop-color="#8fb0ff" stop-opacity=".04"/></linearGradient>
+                </defs>
+                <rect width="280" height="210" fill="#111d4a"/>
+                <rect width="280" height="210" fill="url(#lp-glow)"/>
+                <path d="M7 58L150 30V180L7 152Z" fill="url(#lp-ray)"/>
+                <g fill="none" stroke="#e8ecf8" stroke-opacity=".08"><path d="M0 35H280M0 70H280M0 105H280M0 140H280M0 175H280M35 0V210M70 0V210M105 0V210M140 0V210M175 0V210M210 0V210M245 0V210"/></g>
+                <rect x="0" y="58" width="7" height="94" rx="2" fill="#ffe6bf"/>
+                <g fill="none" stroke="#e8ecf8" stroke-opacity=".42" stroke-width="1.3"><circle cx="208" cy="48" r="17"/><circle cx="248" cy="116" r="17"/><circle cx="196" cy="176" r="17"/></g>
+                <g fill="#e8ecf8" fill-opacity=".3"><circle cx="208" cy="24" r="3"/><circle cx="232" cy="48" r="3"/><circle cx="184" cy="48" r="3"/><circle cx="208" cy="72" r="3"/><circle cx="248" cy="92" r="3"/><circle cx="224" cy="116" r="3"/><circle cx="248" cy="140" r="3"/><circle cx="196" cy="152" r="3"/><circle cx="172" cy="176" r="3"/><circle cx="220" cy="176" r="3"/></g>
+                <path d="M170 124L92 88L104 128Z" fill="url(#lp-cone)"/>
+                <g fill="#fff"><circle cx="90" cy="102" r="7"/><circle cx="105" cy="112" r="7" fill-opacity=".82"/></g>
+                <g transform="translate(166 116) rotate(24)"><rect width="22" height="15" rx="3.5" fill="#2f5bff"/><rect x="6" y="-3.5" width="9" height="4" rx="1.5" fill="#2f5bff"/><circle cx="11" cy="7.5" r="4" fill="none" stroke="#fff" stroke-width="1.6"/></g>
+              </svg>
+              <span class="lc__kind">Эфир</span>
+            </div>
+            <h3 class="lc__t">Свет в&nbsp;банкетном зале без вспышки</h3>
+            <p class="lc__m">ведёт фотограф · вживую и&nbsp;в&nbsp;записи</p>
+          </article>
+          <article class="lc">
+            <div class="lc__pic"><img src="img/t/c-r-makeup.webp" width="560" height="350" alt="" loading="lazy" decoding="async"><span class="lc__kind">Курс</span></div>
+            <h3 class="lc__t">Макияж, который держится до&nbsp;утра</h3>
+            <p class="lc__m">ведёт визажист · уроки и&nbsp;задания</p>
+          </article>
+          <article class="lc">
+            <div class="lc__pic lc__pic--sw" aria-hidden="true"><i style="--c:#e3cfb4"></i><i style="--c:#c2a07f"></i><i style="--c:#9c9a8c"></i><i style="--c:#5f6f6a"></i><i style="--c:#2c3a41"></i><span class="lc__kind">Пресеты</span></div>
+            <h3 class="lc__t">Плёночные тона для свадебного дня</h3>
+            <p class="lc__m">от&nbsp;фотографа · для цветокоррекции</p>
+          </article>
+          <article class="lc">
+            <div class="lc__pic lc__pic--doc" aria-hidden="true">
+              <span class="doc"><b>Тайминг дня</b><i></i><i></i><i class="s"></i><i></i><i class="s"></i></span>
+              <span class="lc__kind">Шаблон</span>
+            </div>
+            <h3 class="lc__t">Тайминг съёмочного дня</h3>
+            <p class="lc__m">от&nbsp;организатора · PDF</p>
+          </article>
+        </div>
+        <p class="panel__note">Видно работы автора&nbsp;— понятно, у&nbsp;кого учишься.</p>
+      </div>
+
+      <!-- Продавать своё -->
+      <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0">
+        <div class="sell">
+          <div class="sell__txt">
+            <p class="sell__big">Курсы, мастер&#8209;классы, эфиры, пресеты и&nbsp;шаблоны&nbsp;— всё, чему ты&nbsp;можешь научить коллег.</p>
+            <ul class="ticks">
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#tick"/></svg>Цену ставишь ты</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#tick"/></svg>Продукт видят исполнители твоей профессии, а&nbsp;не&nbsp;только подписчики</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#tick"/></svg>Комиссия 15%&nbsp;— только с&nbsp;продажи, эквайринг включён</li>
+            </ul>
+          </div>
+          <div class="ed" aria-hidden="true">
+            <div class="ed__seg"><span>Курс</span><span class="is-on">Мастер&#8209;класс</span><span>Эфир</span><span>Пресеты</span></div>
+            <div class="ed__f"><span>Название</span><b>Где встать на&nbsp;свадебной церемонии</b></div>
+            <div class="ed__f ed__f--price"><span>Цена&nbsp;— ставишь ты</span><b>3&nbsp;000&nbsp;₽</b></div>
+            <dl class="ed__sum">
+              <div><dt>Комиссия 15%</dt><dd>−450&nbsp;₽</dd></div>
+              <div class="ed__you"><dt>Тебе с&nbsp;продажи</dt><dd>2&nbsp;550&nbsp;₽</dd></div>
+            </dl>
+            <span class="pill pill--ink ed__btn">Опубликовать</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Курс из эфира -->
+      <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0">
+        <div class="ai">
+          <div class="ai__txt">
+            <p class="sell__big">Эфир прошёл&nbsp;—<br>курс почти готов</p>
+            <p class="ai__p">Загрузи запись до&nbsp;3&nbsp;часов или выбери прошедший эфир. ИИ&nbsp;разобьёт её&nbsp;на&nbsp;уроки, напишет описание и&nbsp;вопросы. Ты&nbsp;проверишь и&nbsp;опубликуешь.</p>
+            <p class="ai__free">Первый курс ИИ соберёт бесплатно</p>
+          </div>
+          <div class="ai__demo" id="ai-demo" aria-hidden="true">
+            <div class="rec">
+              <div class="rec__pic"><img src="img/t/c-r-reels.webp" width="560" height="350" alt="" loading="lazy" decoding="async"><span class="rec__badge"><i></i>Запись эфира · 1:42:10</span></div>
+              <div class="rec__wave" id="rec-wave"></div>
+              <p class="rec__name">Reels за&nbsp;15&nbsp;минут прямо на&nbsp;площадке</p>
+              <p class="rec__by">ведёт reels-мейкер</p>
+            </div>
+            <div class="ai__arrow"><span>ИИ</span><svg width="22" height="22"><use href="#arrow"/></svg></div>
+            <div class="course">
+              <p class="course__lbl">Черновик курса</p>
+              <p class="course__h">6&nbsp;уроков</p>
+              <ol class="course__list">
+                <li>Что снять в&nbsp;первые 10&nbsp;минут</li>
+                <li>Свет площадки и&nbsp;телефона</li>
+                <li>Монтаж прямо на&nbsp;месте</li>
+                <li>Обложка и&nbsp;подписи</li>
+              </ol>
+              <p class="course__more">ещё 2&nbsp;урока · вопросы к&nbsp;каждому</p>
+              <p class="course__chk"><i></i>Проверено</p>
+              <span class="pill pill--ink course__btn">Опубликовать</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Честные правила -->
+<section class="sec fair" id="chestno" aria-labelledby="fair-title">
+  <div class="wrap">
+    <div class="head">
+      <p class="label" data-rv>Честные правила</p>
+      <h2 class="h2" id="fair-title" data-rv>Выдачу двигают работы, <br>а&nbsp;не&nbsp;деньги</h2>
+      <p class="lead" data-rv>Место в&nbsp;выдаче не&nbsp;продаётся. Правила выдачи открыты&nbsp;— их&nbsp;может прочитать каждый.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile" data-rv>
+        <div class="tile__ui" aria-hidden="true"><span class="chip chip--on">Подходящие</span><span class="chip">Свежие</span><span class="chip chip--new"><i></i>Новые авторы</span></div>
+        <h3 class="tile__t">Без рекламы в&nbsp;выдаче</h3>
+        <p class="tile__d">Новые авторы получают показы бесплатно.</p>
+      </div>
+      <div class="tile" data-rv>
+        <div class="tile__ui tile__ui--col" aria-hidden="true">
+          <span class="bub"><i class="bub__ava"></i>Купил курс · оставил отзыв</span>
+          <span class="bub bub--reply">Ответ автора</span>
+        </div>
+        <h3 class="tile__t">Отзывы только от&nbsp;купивших</h3>
+        <p class="tile__d">Без накруток. На&nbsp;любой отзыв можно ответить.</p>
+      </div>
+      <div class="tile" data-rv>
+        <div class="tile__ui tile__ui--col" aria-hidden="true">
+          <span class="tile__cap">через 2&nbsp;месяца</span>
+          <span class="bub">Помогло в&nbsp;работе?</span>
+          <span class="tile__row"><span class="chip chip--sm">да</span><span class="chip chip--sm">частично</span><span class="chip chip--sm">нет</span></span>
+        </div>
+        <h3 class="tile__t">Второй вопрос&nbsp;— через 2&nbsp;месяца</h3>
+        <p class="tile__d">Видно, что курс дал на&nbsp;деле.</p>
+      </div>
+      <div class="tile" data-rv>
+        <div class="tile__ui" aria-hidden="true">
+          <span class="file"><span class="file__ico">PDF</span><span class="file__txt"><b>тайминг-дня.pdf</b><em>для @ник покупателя</em></span></span>
+        </div>
+        <h3 class="tile__t">Метка покупателя на&nbsp;файле</h3>
+        <p class="tile__d">На&nbsp;каждом проданном файле&nbsp;— метка того, кто купил.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Кадры на странице -->
+<section class="sec meet" id="kadry" aria-labelledby="meet-title">
+  <div class="wrap meet__grid">
+    <figure class="meet__pic" data-rv>
+      <img src="img/t/nastya-640.webp" width="640" height="800" alt="Анастасия Агапова" loading="lazy" decoding="async">
+      <i class="corners" aria-hidden="true"></i>
+    </figure>
+    <div class="meet__txt">
+      <p class="label" data-rv>Кадры на&nbsp;странице</p>
+      <h2 class="h2" id="meet-title" data-rv>Анастасия Агапова</h2>
+      <p class="lead" data-rv>Свадебный и&nbsp;женский фотограф, преподаёт фотографию. Свадебные и&nbsp;портретные кадры на&nbsp;странице&nbsp;— её.</p>
+      <p class="meet__cities" data-rv><span>Санкт&#8209;Петербург</span><span>Ростов&#8209;на&#8209;Дону</span><span>Москва</span></p>
+      <blockquote class="meet__q" data-rv><p>Мои фотографии живые и&nbsp;романтичные, а&nbsp;каждая съёмка&nbsp;— отдельная и&nbsp;неповторимая история, к&nbsp;которой я&nbsp;отношусь с&nbsp;большим трепетом</p></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Деньги и партнёрка -->
+<section class="sec money" id="dengi" aria-labelledby="money-title">
+  <div class="wrap">
+    <div class="money__box">
+      <div class="head">
+        <p class="label" data-rv>Деньги и&nbsp;партнёрка</p>
+        <h2 class="h2" id="money-title" data-rv>Комиссия&nbsp;— <br>только когда продаёшь</h2>
+      </div>
+      <div class="nums">
+        <div class="num" data-rv>
+          <p class="num__v">0<small>&nbsp;₽</small></p>
+          <p class="num__d"><b>Профиль, поиск и&nbsp;коллеги</b> бесплатно весь первый год.</p>
+        </div>
+        <div class="num" data-rv>
+          <p class="num__v">15<small>%</small></p>
+          <p class="num__d"><b>С&nbsp;продаж курсов и&nbsp;товаров.</b> Нет продаж&nbsp;— нет комиссии.</p>
+        </div>
+        <div class="num" data-rv>
+          <p class="num__v">20<small>%</small></p>
+          <p class="num__d"><b>Тебе за&nbsp;приглашённых коллег</b>&nbsp;— от&nbsp;дохода платформы с&nbsp;них, 24&nbsp;месяца с&nbsp;их&nbsp;регистрации.</p>
+        </div>
+      </div>
+      <div class="invite" data-rv>
+        <div class="invite__txt">
+          <h3 class="invite__h">Приглашай коллег</h3>
+          <p>Делись своей ссылкой&nbsp;— в&nbsp;кабинете видно, кто пришёл по&nbsp;ней. Процент идёт из&nbsp;дохода платформы, а&nbsp;не&nbsp;из&nbsp;заработка коллеги.</p>
+        </div>
+        <div class="ticket" aria-hidden="true">
+          <span class="ticket__k">Приглашение</span>
+          <span class="ticket__to">в&nbsp;EventMatch</span>
+          <span class="ticket__from">от&nbsp;@твой-ник</span>
+        </div>
+        <a class="btn" href="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding">Создать профиль</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Финал -->
+<section class="sec final" aria-labelledby="final-title">
+  <div class="wrap final__in">
+    <svg class="final__heart" id="final-heart" viewBox="0 0 108 100" aria-hidden="true"><path class="fill" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/><path class="line" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z" pathLength="1"/></svg>
+    <h2 class="h2 final__h" id="final-title" data-rv>Создано исполнителем&nbsp;— <br>с&nbsp;любовью</h2>
+    <p class="lead" data-rv>Займи свой ник, пока он&nbsp;свободен.</p>
+    <form class="nick" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding" method="get" data-nick data-rv>
+      <label class="nick__field"><span class="nick__pre">eventmatch.ru/</span><input name="nick" type="text" placeholder="твой-ник" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" aria-label="Придумай ник для адреса визитки"></label>
+      <button class="btn btn--lg" type="submit">Создать профиль</button>
+    </form>
+    <p class="note" data-rv>Вход по&nbsp;номеру телефона, VK&nbsp;ID или Яндекс&nbsp;ID</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="foot__love"><svg width="15" height="14" aria-hidden="true"><use href="#heart"/></svg>EventMatch создан с&nbsp;любовью</p>
+    <nav class="foot__nav" aria-label="Разделы внизу">
+      <a href="#vizitka">Визитка</a>
+      <a href="#kollegi">Коллеги</a>
+      <a href="#obuchenie">Обучение</a>
+      <a href="#chestno">Честные правила</a>
+      <a href="#dengi">Деньги</a>
+    </nav>
+    <p class="foot__c">© 2026 EventMatch</p>
+  </div>
+</footer>
+
+<p class="variant" role="note">Прототип · вариант E · <a href="../" data-variant="a">A</a> · <a href="../b/" data-variant="b">B</a> · <a href="../c/" data-variant="c">C</a> · <a href="../d/" data-variant="d">D</a></p>
+
+<script src="script.js" defer></script>
+</body>
+</html>
