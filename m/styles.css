@@ -589,11 +589,10 @@ html.js:not(.ready) .final__heart .fill { animation: heart-safe-fill 0s 2.5s for
   transition: transform 1.1s var(--ease), opacity 0.8s ease-out;
 }
 .fc:not(.fc--c) > img { width: 100%; height: 100%; object-fit: cover; }
-.fc--far-l { z-index: 1; transform: translate(-440px, 86px) rotate(-15deg) scale(0.84); }
+.fc--far-l { z-index: 1; transform: translate(-392px, 86px) rotate(-15deg) scale(0.84); }
 .fc--l { z-index: 2; transform: translate(-218px, 34px) rotate(-7deg) scale(0.93); }
 .fc--r { z-index: 2; transform: translate(218px, 34px) rotate(7deg) scale(0.93); }
-/* крайние карточки шире разведены (440, было 392): у Насти 10 мужчина слева не уходит под соседнюю карточку */
-.fc--far-r { z-index: 1; transform: translate(440px, 86px) rotate(15deg) scale(0.84); }
+.fc--far-r { z-index: 1; transform: translate(392px, 86px) rotate(15deg) scale(0.84); }
 .fc--c { z-index: 5; top: 0; width: 272px; height: 360px; margin-left: -136px; background: var(--white); }
 .fc__cover { display: block; width: 100%; height: 276px; object-fit: cover; }
 .fc__panel { display: flex; align-items: center; gap: 11px; padding: 0 16px; height: 84px; text-align: left; }
