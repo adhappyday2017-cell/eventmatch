@@ -24,14 +24,14 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   // Подписи — в одну строку (карточка 256 px).
   // Агаповой в выдаче коллег нет (она не «открыта к работе»), зато её обучение находится по запросу про курс.
   const ITEMS = {
-    ph1: { f: 'img/r/ag-036-560.webp', s: 'img/r/ag-036-s.webp', pos: '50% 31%', t: 'Фотограф', m: 'Ростов‑на‑Дону' },
+    ph1: { f: 'img/r/ag-036-560.webp', s: 'img/r/ag-036-s.webp', pos: '50% 31%', t: 'Фотограф', m: 'Ростов-на-Дону' },
     vid1: { f: 'img/r/ag-037-560.webp', s: 'img/r/ag-037-s.webp', pos: '50% 30%', t: 'Видеограф', m: 'Краснодар' },
     ph2: { f: 'img/r/ag-025-560.webp', s: 'img/r/ag-025-s.webp', pos: '50% 0%', t: 'Фотограф', m: 'Москва' },
     mod1: { f: 'img/t/f-r-model2-400.webp', s: 'img/t/f-r-model2-s.webp', t: 'Модель', m: 'Москва' },
     mod2: { f: 'img/r/ag-041-560.webp', s: 'img/r/ag-041-s.webp', pos: '50% 32%', t: 'Модель', m: 'Краснодар' },
-    mod3: { f: 'img/r/fs-primer-1-560.webp', s: 'img/r/fs-primer-1-s.webp', pos: '54% 24%', t: 'Модель', m: 'Ростов‑на‑Дону' },  // «Пример 1» основателя
-    edu1: { f: 'img/r/ag-061-560.webp', s: 'img/r/ag-061-s.webp', pos: '50% 0%', k: 'Мастер-класс · 2 дня', t: '«Свадебный фотограф»', m: 'Анастасия Агапова · до\u00a015\u00a0человек' },
-    edu2: { f: 'img/r/ag-003-560.webp', s: 'img/r/ag-003-s.webp', pos: '50% 0%', k: 'Эфир · 28 октября', t: 'Женский портрет: свет из окна', m: 'Анастасия Агапова · 19:00\u00a0мск' },
+    mod3: { f: 'img/r/fs-primer-1-560.webp', s: 'img/r/fs-primer-1-s.webp', pos: '54% 24%', t: 'Модель', m: 'Ростов-на-Дону' },  // «Пример 1» основателя
+    edu1: { f: 'img/r/ag-061-560.webp', s: 'img/r/ag-061-s.webp', pos: '50% 0%', k: 'Мастер-класс · 2\u00a0дня', t: '«Свадебный фотограф»', m: 'Анастасия Агапова · до\u00a015\u00a0человек' },
+    edu2: { f: 'img/r/ag-003-560.webp', s: 'img/r/ag-003-s.webp', pos: '50% 0%', k: 'Эфир · 28\u00a0октября', t: 'Женский портрет: свет из\u00a0окна', m: 'Анастасия Агапова · 19:00\u00a0мск' },
     edu3: { f: 'img/r/ag-032-560.webp', s: 'img/r/ag-032-s.webp', pos: '50% 48%', k: 'Курс', t: 'Свет в\u00a0банкетном зале', m: 'фотограф · онлайн, в\u00a0своём темпе' }
   };
   // Три подсказки: две — коллеги в команду, третья — обучение (пункт 2 «Как работает»).
@@ -681,38 +681,38 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   /* ── Расписание прототипа. Эфиры только в будни: выходные закрывает панель эфира ── */
   const TOPICS = ['Фото', 'Видео и reels', 'Ведущие', 'Образ', 'Организация и декор'];
   const FORMATS = ['Эфир', 'Мастер-класс', 'Разбор', 'Офлайн-встреча'];
-  const AUDIENCE = { 'Фото': 'Фотографы и видеографы', 'Видео и reels': 'Видеографы и reels-мейкеры', 'Ведущие': 'Ведущие и организаторы', 'Образ': 'Визажисты и стилисты', 'Организация и декор': 'Организаторы и декораторы' };
-  const NASTYA = { name: 'Анастасия Агапова', role: 'свадебный и женский фотограф', ava: 'img/efiry/nastya-96.webp' };
+  const AUDIENCE = { 'Фото': 'Фотографы и\u00a0видеографы', 'Видео и reels': 'Видеографы и\u00a0reels-мейкеры', 'Ведущие': 'Ведущие и\u00a0организаторы', 'Образ': 'Визажисты и\u00a0стилисты', 'Организация и декор': 'Организаторы и\u00a0декораторы' };
+  const NASTYA = { name: 'Анастасия Агапова', role: 'свадебный и\u00a0женский фотограф', ava: 'img/efiry/nastya-96.webp' };
   const EVENTS = [
-    { id: 's1', d: '2026-09-15', t: '19:00', title: 'Первый танец в темноте: как снимать', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
-    { id: 's2', d: '2026-09-22', t: '19:00', title: 'Прайс ведущего: из чего складывается', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир', rec: true },
+    { id: 's1', d: '2026-09-15', t: '19:00', title: 'Первый танец в\u00a0темноте: как снимать', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
+    { id: 's2', d: '2026-09-22', t: '19:00', title: 'Прайс ведущего: из\u00a0чего складывается', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир', rec: true },
     { id: 's3', d: '2026-09-29', t: '12:00', title: 'Разбор портфолио визажистов', host: 'визажист', topic: 'Образ', fmt: 'Разбор', rec: true },
     { id: 'e1', d: '2026-10-01', t: '19:00', title: 'Тайминг свадебного дня без паники', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир', rec: true, mine: true },
-    { id: 'e2', d: '2026-10-02', t: '19:00', title: 'Свет в банкетном зале без вспышки', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
-    { id: 'e3', d: '2026-10-06', t: '12:00', title: 'Макияж, который держится до утра', host: 'визажист', topic: 'Образ', fmt: 'Мастер-класс', rec: true, dur: '2 часа' },
-    { id: 'e4', d: '2026-10-07', t: '20:00', title: 'Reels прямо на площадке', host: 'reels-мейкер', topic: 'Видео и reels', fmt: 'Эфир', rec: true },
+    { id: 'e2', d: '2026-10-02', t: '19:00', title: 'Свет в\u00a0банкетном зале без вспышки', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
+    { id: 'e3', d: '2026-10-06', t: '12:00', title: 'Макияж, который держится до\u00a0утра', host: 'визажист', topic: 'Образ', fmt: 'Мастер-класс', rec: true, dur: '2\u00a0часа' },
+    { id: 'e4', d: '2026-10-07', t: '20:00', title: 'Reels прямо на\u00a0площадке', host: 'reels-мейкер', topic: 'Видео и reels', fmt: 'Эфир', rec: true },
     { id: 'e5', d: '2026-10-09', t: '19:00', title: 'Первые пять минут ведущего', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир', rec: true, mine: true },
-    { id: 'e6', d: '2026-10-13', t: '12:00', title: 'Разбор портфолио: свадебный репортаж', host: 'фотограф', topic: 'Фото', fmt: 'Разбор', rec: true, dur: '2 часа' },
-    { id: 'e7', d: '2026-10-14', t: '19:00', title: 'Свадебные причёски: тренды сезона', host: 'стилист по волосам', topic: 'Образ', fmt: 'Эфир', rec: true },
-    { id: 'e8', d: '2026-10-15', t: '18:00', title: 'Звук на церемонии: петлички и запас', host: 'видеограф', topic: 'Видео и reels', fmt: 'Эфир', rec: true },
-    { id: 'e9', d: '2026-10-20', t: '11:00', title: 'Свет в студии: мастер-класс вживую', host: 'фотограф', topic: 'Фото', fmt: 'Офлайн-встреча', off: true, city: 'Краснодар' },
-    { id: 'e10', d: '2026-10-21', t: '19:00', title: 'Как ставить цену на съёмку', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
-    { id: 'e11', d: '2026-10-23', t: '19:00', title: 'Декор стола: свечи, свет и текстиль', host: 'декоратор', topic: 'Организация и декор', fmt: 'Эфир', mine: true },
+    { id: 'e6', d: '2026-10-13', t: '12:00', title: 'Разбор портфолио: свадебный репортаж', host: 'фотограф', topic: 'Фото', fmt: 'Разбор', rec: true, dur: '2\u00a0часа' },
+    { id: 'e7', d: '2026-10-14', t: '19:00', title: 'Свадебные причёски: тренды сезона', host: 'стилист по\u00a0волосам', topic: 'Образ', fmt: 'Эфир', rec: true },
+    { id: 'e8', d: '2026-10-15', t: '18:00', title: 'Звук на\u00a0церемонии: петлички и\u00a0запас', host: 'видеограф', topic: 'Видео и reels', fmt: 'Эфир', rec: true },
+    { id: 'e9', d: '2026-10-20', t: '11:00', title: 'Свет в\u00a0студии: мастер-класс вживую', host: 'фотограф', topic: 'Фото', fmt: 'Офлайн-встреча', off: true, city: 'Краснодар' },
+    { id: 'e10', d: '2026-10-21', t: '19:00', title: 'Как ставить цену на\u00a0съёмку', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
+    { id: 'e11', d: '2026-10-23', t: '19:00', title: 'Декор стола: свечи, свет и\u00a0текстиль', host: 'декоратор', topic: 'Организация и декор', fmt: 'Эфир', mine: true },
     { id: 'e12', d: '2026-10-26', t: '20:00', title: 'Смета свадьбы без сюрпризов', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир' },
-    { id: 'e13', d: '2026-10-27', t: '12:00', title: 'Ведущий и диджей: как делить вечер', host: 'ведущий', topic: 'Ведущие', fmt: 'Разбор', dur: '2 часа' },
-    { id: 'e14', d: '2026-10-28', t: '19:00', title: 'Женский портрет: свет из\u00a0окна', host: NASTYA, topic: 'Фото', fmt: 'Эфир', who: 'Фотографы и визажисты' },
+    { id: 'e13', d: '2026-10-27', t: '12:00', title: 'Ведущий и\u00a0диджей: как делить вечер', host: 'ведущий', topic: 'Ведущие', fmt: 'Разбор', dur: '2\u00a0часа' },
+    { id: 'e14', d: '2026-10-28', t: '19:00', title: 'Женский портрет: свет из\u00a0окна', host: NASTYA, topic: 'Фото', fmt: 'Эфир', who: 'Фотографы и\u00a0визажисты' },
     { id: 'e15', d: '2026-10-29', t: '19:00', title: 'Как упаковать первый мастер-класс', host: 'фотограф', topic: 'Фото', fmt: 'Эфир' },
     { id: 'e16', d: '2026-10-30', t: '11:00', title: 'Совместная съёмка: модель, визажист, фотограф', host: 'визажист', topic: 'Образ', fmt: 'Офлайн-встреча', off: true, city: 'Москва', who: 'Модели, визажисты, фотографы' },
     { id: 'n1', d: '2026-11-03', t: '19:00', title: 'Сколько стоит твой разбор', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир' },
-    { id: 'n2', d: '2026-11-05', t: '18:00', title: 'Разбор портфолио ведущих', host: 'ведущий', topic: 'Ведущие', fmt: 'Разбор', dur: '2 часа' },
-    { id: 'n3', d: '2026-11-11', t: '19:00', title: 'Reels из бэкстейджа: монтаж за вечер', host: 'reels-мейкер', topic: 'Видео и reels', fmt: 'Эфир' },
+    { id: 'n2', d: '2026-11-05', t: '18:00', title: 'Разбор портфолио ведущих', host: 'ведущий', topic: 'Ведущие', fmt: 'Разбор', dur: '2\u00a0часа' },
+    { id: 'n3', d: '2026-11-11', t: '19:00', title: 'Reels из\u00a0бэкстейджа: монтаж за\u00a0вечер', host: 'reels-мейкер', topic: 'Видео и reels', fmt: 'Эфир' },
     { id: 'n4', d: '2026-11-18', t: '19:00', title: 'Итоги сезона: что покупали коллеги', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир' },
-    { id: 'n5', d: '2026-11-25', t: '19:00', title: 'Зимний свет: съёмка на улице', host: 'фотограф', topic: 'Фото', fmt: 'Эфир' },
-    { id: 'd1', d: '2026-12-09', t: '19:00', title: 'Планируем сезон: цены и календарь', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир' },
+    { id: 'n5', d: '2026-11-25', t: '19:00', title: 'Зимний свет: съёмка на\u00a0улице', host: 'фотограф', topic: 'Фото', fmt: 'Эфир' },
+    { id: 'd1', d: '2026-12-09', t: '19:00', title: 'Планируем сезон: цены и\u00a0календарь', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир' },
     { id: 'd2', d: '2026-12-16', t: '19:00', title: 'Корпоративы: сценарий ведущего', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир' },
-    { id: 'j1', d: '2027-01-20', t: '19:00', title: 'Портфолио к сезону: что обновить', host: 'фотограф', topic: 'Фото', fmt: 'Разбор', dur: '2 часа' },
-    { id: 'f1', d: '2027-02-17', t: '19:00', title: 'Весенние образы: причёски и макияж', host: 'стилист по волосам', topic: 'Образ', fmt: 'Эфир' },
-    { id: 'm1', d: '2027-03-17', t: '19:00', title: 'Свадебный фильм за выходные', host: 'видеограф', topic: 'Видео и reels', fmt: 'Эфир' }
+    { id: 'j1', d: '2027-01-20', t: '19:00', title: 'Портфолио к\u00a0сезону: что обновить', host: 'фотограф', topic: 'Фото', fmt: 'Разбор', dur: '2\u00a0часа' },
+    { id: 'f1', d: '2027-02-17', t: '19:00', title: 'Весенние образы: причёски и\u00a0макияж', host: 'стилист по\u00a0волосам', topic: 'Образ', fmt: 'Эфир' },
+    { id: 'm1', d: '2027-03-17', t: '19:00', title: 'Свадебный фильм за\u00a0выходные', host: 'видеограф', topic: 'Видео и reels', fmt: 'Эфир' }
   ];
 
   /* ── Узлы ── */
@@ -729,7 +729,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const hostName = (e) => (typeof e.host === 'string' ? e.host : e.host.name);
   const filtered = (list) => list.filter((e) => (!state.topics.length || state.topics.includes(e.topic)) && (!state.fmts.length || state.fmts.includes(e.fmt)) && (!state.mine || e.mine));
   const monthEvents = (ym) => EVENTS.filter((e) => ymOf(e.d) === ym);
-  const dateText = (e) => { const dt = parse(e.d); return `${dt.getDate()} ${MONTHS_G[dt.getMonth()]}`; };
+  const dateText = (e) => { const dt = parse(e.d); return `${dt.getDate()}${NB}${MONTHS_G[dt.getMonth()]}`; };
 
   /* ── Выпадашки «Все темы» / «Все форматы» ── */
   const dds = [
@@ -777,7 +777,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
       }
       rows.push(`<div class="cw">${cells}</div>`);
     }
-    const empty = !shown.length ? `<div class="cal__empty" style="margin-top:12px"><b>${all.length ? 'Ничего не нашли по фильтрам' : 'В этом месяце эфиров пока нет'}</b>${all.length ? 'Попробуй другую тему или сбрось фильтры.' : 'Расписание появляется за месяц-полтора до начала.'}</div>` : '';
+    const empty = !shown.length ? `<div class="cal__empty" style="margin-top:12px"><b>${all.length ? 'Ничего не нашли по фильтрам' : 'В этом месяце эфиров пока нет'}</b>${all.length ? 'Попробуй другую тему или сбрось фильтры' : 'Расписание появляется за\u00a0месяц-полтора до\u00a0начала'}</div>` : '';
     body.innerHTML = `<div class="cgrid${rows.length > 5 ? ' cgrid--6' : ''}${gridSeen ? ' is-in' : ''}" id="lv-grid" aria-label="${ymLabel(state.ym)}"><div class="cw cw--h" aria-hidden="true">${WD7.map((w) => `<div class="cwd">${w}</div>`).join('')}</div>${rows.join('')}</div>${empty}`;
     if (!gridSeen) {
       const g = $('#lv-grid');
@@ -803,19 +803,19 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
         const cls = `hmd${has ? ' has' : ''}${today ? ' today' : ''}${past ? ' past' : ''}`;
         cells += has ? `<button type="button" class="${cls}" data-day="${key}" aria-label="${dd} ${MONTHS_G[m - 1]}, ${has.length} ${plural(has.length, ['эфир', 'эфира', 'эфиров'])}">${dd}</button>` : `<span class="${cls}">${dd}</span>`;
       }
-      return `<div class="hmo"><p class="hmo__t">${ymLabel(ym)}<small>${evs.length ? `${evs.length} ${plural(evs.length, ['эфир', 'эфира', 'эфиров'])}` : 'пока пусто'}</small></p><div class="hmo__g">${cells}</div></div>`;
+      return `<div class="hmo"><p class="hmo__t">${ymLabel(ym)}<small>${evs.length ? `${evs.length}${NB}${plural(evs.length, ['эфир', 'эфира', 'эфиров'])}` : 'пока пусто'}</small></p><div class="hmo__g">${cells}</div></div>`;
     }).join('')}</div>`;
   };
 
   /* ── Вид «Список» ── */
   const drawList = (shown, all) => {
     const [, m] = state.ym.split('-').map(Number);
-    if (!shown.length) { body.innerHTML = `<div class="cal__empty"><b>${all.length ? 'Ничего не нашли по фильтрам' : 'Эфиров пока нет'}</b>${all.length ? 'Попробуй другую тему или сбрось фильтры.' : 'Расписание появляется за месяц-полтора до начала.'}</div>`; return; }
+    if (!shown.length) { body.innerHTML = `<div class="cal__empty"><b>${all.length ? 'Ничего не нашли по фильтрам' : 'Эфиров пока нет'}</b>${all.length ? 'Попробуй другую тему или сбрось фильтры' : 'Расписание появляется за\u00a0месяц-полтора до\u00a0начала'}</div>`; return; }
     const days = [];
     shown.forEach((e) => { const g = days.find((x) => x.d === e.d); if (g) g.ev.push(e); else days.push({ d: e.d, ev: [e] }); });
     body.innerHTML = `<div class="clist">${days.map(({ d, ev }) => {
       const dt = parse(d);
-      return `<div class="clist__d${d >= TODAY ? ' is-next' : ''}"><div class="clist__dt"><b>${dt.getDate()} ${MONTHS_G[m - 1].slice(0, 3)}</b>${WD[dt.getDay()]}${d === TODAY ? ' · сегодня' : ''}</div><div class="clist__ev">${ev.map((e) => `<button type="button" class="cer${isPast(e) ? ' past' : ''}${state.sel === e.id && cal.classList.contains('is-open') ? ' is-sel' : ''}" data-ev="${e.id}" aria-pressed="${state.sel === e.id}"><span class="cer__t">${e.t}</span><span class="cer__m"><span class="cer__n">${esc(e.title)}</span><span class="cer__k">${esc(hostName(e))} · ${esc(e.fmt)}${e.off ? ` · ${esc(e.city)}` : ''}${e.mine ? ' · ты записан' : ''}</span></span>${e.off ? ICON('pin', 16) : ''}</button>`).join('')}</div></div>`;
+      return `<div class="clist__d${d >= TODAY ? ' is-next' : ''}"><div class="clist__dt"><b>${dt.getDate()}${NB}${MONTHS_G[m - 1].slice(0, 3)}</b>${WD[dt.getDay()]}${d === TODAY ? ' · сегодня' : ''}</div><div class="clist__ev">${ev.map((e) => `<button type="button" class="cer${isPast(e) ? ' past' : ''}${state.sel === e.id && cal.classList.contains('is-open') ? ' is-sel' : ''}" data-ev="${e.id}" aria-pressed="${state.sel === e.id}"><span class="cer__t">${e.t}</span><span class="cer__m"><span class="cer__n">${esc(e.title)}</span><span class="cer__k">${esc(e.fmt)} · ${esc(hostName(e))}${e.off ? ` · ${esc(e.city)}` : ''}${e.mine ? ' · ты записан' : ''}</span></span>${e.off ? ICON('pin', 16) : ''}</button>`).join('')}</div></div>`;
     }).join('')}</div>`;
     // список начинается с ближайшего эфира: прошедшие — выше, их видно прокруткой
     const list = $('.clist', body), next = $('.clist__d.is-next', body);
@@ -828,7 +828,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     if (days === 0) return 'сегодня';
     if (days === 1) return 'завтра';
     if (days > 1) return `через ${days}${NB}${plural(days, ['день', 'дня', 'дней'])}`;
-    return e.rec ? 'есть запись' : 'уже прошёл';
+    return e.rec ? 'есть запись' : e.off ? 'уже прошла' : 'уже прошёл';
   };
   let focusPanel = false;
   const drawEv = () => {
@@ -837,9 +837,9 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     const dt = parse(e.d);
     const past = isPast(e);
     const kick = `<span class="epn__tag">${esc(e.fmt)}</span><span>${esc(e.topic)}</span><span>${relText(e)}</span>`;
-    const format = e.off ? `<b>Встреча вживую, 3${NB}часа</b><span>${esc(e.city)}, адрес${NB}— после записи</span>` : `<b>${esc(e.fmt)}, ${e.dur || `1,5${NB}часа`}</b><span>онлайн, вопросы в${NB}чате</span>`;
+    const format = e.off ? `<b>Встреча вживую, 3${NB}часа</b><span>адрес${NB}— после записи</span>` : `<b>${esc(e.fmt)}, ${e.dur || `1,5${NB}часа`}</b><span>вопросы в${NB}чате</span>`;
     const rows = `<dl class="epn__rows">
-      <div><dt>Когда</dt><dd><b>${WDF[dt.getDay()]}, ${dateText(e)}</b><span>${e.t} мск${e.off ? ` · ${esc(e.city)}` : ' · онлайн'}</span></dd></div>
+      <div><dt>Когда</dt><dd><b>${WDF[dt.getDay()]}, ${dateText(e)}</b><span>${e.t}${NB}мск${e.off ? ` · ${esc(e.city)}` : ' · онлайн'}</span></dd></div>
       <div><dt>Формат</dt><dd>${format}</dd></div>
       <div><dt>Для кого</dt><dd><b>${esc(e.who || AUDIENCE[e.topic])}</b><span>вход свободный</span></dd></div>
     </dl>`;
@@ -850,8 +850,8 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
       ? (e.rec ? `<a class="btn" href="${ONB}">Смотреть запись</a>` : '')
       : (e.mine ? `<a class="btn btn--ghost" href="${ONB}">${ICON('check', 16)}${NB}Ты записан</a>` : `<a class="btn" href="${ONB}">Записаться</a>`) + `<a class="epn__ghost" href="${ONB}">${ICON('cal', 16)}В${NB}календарь</a>`;
     const note = past
-      ? (e.rec ? `Запись и${NB}обучение спикера${NB}— в${NB}его профиле.` : `Эфир уже прошёл, записи нет.`)
-      : `Запись останется в${NB}профиле спикера${NB}— там${NB}же его обучение.`;
+      ? (e.rec ? `Запись и${NB}обучение спикера${NB}— в${NB}его профиле` : `${esc(e.fmt)} уже ${e.off ? 'прошла' : 'прошёл'}, записи нет`)
+      : (e.off ? `Обучение спикера${NB}— в${NB}его профиле` : `Запись эфира останется в${NB}профиле спикера${NB}— там${NB}же его обучение`);
     const paint = () => {
       kickEl.innerHTML = kick;
       bodyEl.innerHTML = `<h3 class="epn__h" id="lv-epn-h" tabindex="-1">${esc(e.title)}</h3>${rows}${host}`;
@@ -884,7 +884,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const draw = () => {
     const half = state.view === 'half';
     const all = monthEvents(state.ym), shown = filtered(all);
-    mLabel.textContent = half ? `${ymLabel(HALF_FROM)} – ${ymLabel(ymAdd(HALF_FROM, 5))}` : ymLabel(state.ym);
+    mLabel.textContent = half ? `${ymLabel(HALF_FROM)}${NB}— ${ymLabel(ymAdd(HALF_FROM, 5)).toLowerCase()}` : ymLabel(state.ym);
     prevB.disabled = half || state.ym <= RANGE[0];
     nextB.disabled = half || state.ym >= RANGE[1];
     resetB.hidden = !(state.topics.length || state.fmts.length || state.mine);
@@ -960,13 +960,13 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const FEE = 0.07;
   const FORMATS = [
     { key: 'course', badge: 'Курс', title: 'Свадебная съёмка: 8\u00a0недель с\u00a0обратной связью', cover: 'img/fs/fs-nastya-1.webp', pos: '60% 17%',
-      price: 30000, min: 15000, max: 90000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Продаж в месяц', unit: ['продажа', 'продажи', 'продаж'] },
+      price: 30000, min: 15000, max: 90000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Продаж в\u00a0месяц', unit: ['продажа', 'продажи', 'продаж'] },
     { key: 'master', badge: 'Мастер-класс', title: 'Мастер-класс офлайн: съёмка в\u00a0студии', cover: 'img/dohod/ag-022-900.webp', pos: '39% 26%',
-      price: 55000, min: 7900, max: 149900, step: 100, sales: 10, maxSales: 30, salesLabel: 'Мест в потоке', unit: ['место', 'места', 'мест'], note: '1 поток в месяц' },
+      price: 55000, min: 7900, max: 149900, step: 100, sales: 10, maxSales: 30, salesLabel: 'Мест в\u00a0потоке', unit: ['место', 'места', 'мест'], note: '1\u00a0поток в\u00a0месяц' },
     { key: 'video', badge: 'Видеоурок', title: 'Репортаж на\u00a0свадьбе: 1,5\u00a0часа', cover: 'img/dohod/ag-026-900.webp', pos: '61% 32%',
-      price: 5900, min: 2990, max: 9900, step: 10, sales: 28, maxSales: 200, salesLabel: 'Продаж в месяц', unit: ['продажа', 'продажи', 'продаж'] },
+      price: 5900, min: 2990, max: 9900, step: 10, sales: 28, maxSales: 200, salesLabel: 'Продаж в\u00a0месяц', unit: ['продажа', 'продажи', 'продаж'] },
     { key: 'review', badge: 'Разбор', title: 'Разбор портфолио: до\u00a03\u00a0часов один на\u00a0один', cover: 'img/dohod/ag-072-900.webp', pos: '51% 26%',
-      price: 15000, min: 5000, max: 20000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Консультаций в месяц', unit: ['консультация', 'консультации', 'консультаций'] }
+      price: 15000, min: 5000, max: 20000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Разборов в\u00a0месяц', unit: ['разбор', 'разбора', 'разборов'] }
   ];
 
   const price = $('[data-calc-input="price"]'), sales = $('[data-calc-input="sales"]');
@@ -1154,7 +1154,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
       if (!a.dataset.base) a.dataset.base = a.getAttribute('href') || '';
       if (!a.dataset.base.startsWith('../')) return;
       const u = new URL(a.dataset.base, location.href);
-      if (/\/(l|m|n)\/$/.test(u.pathname)) a.href = mark(u, st).href;
+      if (/\/(l|m|n|l-sepia)\/$/.test(u.pathname)) a.href = mark(u, st).href;
     });
     if (save) {
       try { localStorage.setItem('em-skin', st.skin); localStorage.setItem('em-btn', st.btn); } catch (e) { /* приватный режим — просто не помним */ }
