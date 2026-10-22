@@ -29,18 +29,19 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     ph2: { f: 'img/r/ag-025-560.webp', s: 'img/r/ag-025-s.webp', pos: '50% 0%', t: 'Фотограф', m: 'Москва' },
     mod1: { f: 'img/t/f-r-model2-400.webp', s: 'img/t/f-r-model2-s.webp', t: 'Модель', m: 'Москва' },
     mod2: { f: 'img/r/ag-041-560.webp', s: 'img/r/ag-041-s.webp', pos: '50% 32%', t: 'Модель', m: 'Краснодар' },
-    mod3: { f: 'img/r/ag-078-560.webp', s: 'img/r/ag-078-s.webp', pos: '50% 38%', t: 'Модель', m: 'Ростов‑на‑Дону' },
+    mod3: { f: 'img/r/fs-primer-1-560.webp', s: 'img/r/fs-primer-1-s.webp', pos: '54% 24%', t: 'Модель', m: 'Ростов‑на‑Дону' },  // «Пример 1» основателя
     edu1: { f: 'img/r/ag-061-560.webp', s: 'img/r/ag-061-s.webp', pos: '50% 0%', k: 'Мастер-класс · 2 дня', t: '«Свадебный фотограф»', m: 'Анастасия Агапова · до\u00a015\u00a0человек' },
     edu2: { f: 'img/r/ag-003-560.webp', s: 'img/r/ag-003-s.webp', pos: '50% 0%', k: 'Эфир · 28 октября', t: 'Женский портрет: свет из окна', m: 'Анастасия Агапова · 19:00\u00a0мск' },
     edu3: { f: 'img/r/ag-032-560.webp', s: 'img/r/ag-032-s.webp', pos: '50% 48%', k: 'Курс', t: 'Свет в\u00a0банкетном зале', m: 'фотограф · онлайн, в\u00a0своём темпе' }
   };
   // Три подсказки: две — коллеги в команду, третья — обучение (пункт 2 «Как работает»).
-  // На «рыжую с веснушками» первая модель действительно рыжая с веснушками.
+  // На «рыжую с веснушками» первая модель действительно рыжая с веснушками. Эта подсказка открыта первой (START).
   const QUERIES = [
     { q: 'второй фотограф или видеограф на субботу', ids: ['ph1', 'vid1', 'ph2'] },
-    { q: 'модель на мастер-класс, рыжая с веснушками', ids: ['mod1', 'mod2', 'mod3'] },
+    { q: 'модель на мастер-класс, рыжая с веснушками', ids: ['mod1', 'mod3', 'mod2'] },  // чёрно-белая — посередине
     { q: 'курс по свету для свадебного фотографа', ids: ['edu1', 'edu2', 'edu3'] }
   ];
+  const START = 1;
 
   /* ── Общие помощники ────────────────────────────────────────────────── */
   const loops = [];
@@ -250,8 +251,9 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
         const typed = typeQuery(QUERIES[i].q, fast);
         if (fast) swap(i, tok, fast); else typed.then(() => swap(i, tok, fast));
       };
-      qText.textContent = QUERIES[0].q;
-      render(0);
+      qI = START;
+      qText.textContent = QUERIES[START].q;
+      render(START);
       QUERIES.forEach((q) => q.ids.forEach((id) => preload(ITEMS[id].s)));
       if (RM || !hasIO) cells.forEach((c) => c.classList.remove('is-soft'));
       else once(resBox, () => focusIn(110), 0.35);
