@@ -190,83 +190,30 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     }
   }
 
-  /* ── 5. Умный поиск: запрос набирается, выдача проявляется ───────────── */
+  /* ── 5. Умный поиск: клик по подсказке — сразу её запрос и выдача ─────────
+     Без автосмены, печати по буквам, мигающего курсора и проявления из размытия:
+     основатель (22.10.2026) — «не должно быть мельканий и эффектов, пользователей это отвлекает». */
   {
     const resBox = $('#res'), qText = $('#sbar-q'), chipsBox = $('#qchips');
-    const sec = $('#poisk');
     if (resBox && qText && chipsBox) {
-      const preload = (src) => { const i = new Image(); i.decoding = 'async'; i.src = src; return i; };
-      const ready = (img) => (img.complete && img.naturalWidth ? Promise.resolve() : (img.decode ? img.decode().catch(() => {}) : new Promise((r) => { img.onload = img.onerror = r; })));
       const chips = $$('.qchip', chipsBox);
-      let qI = 0, cells = [], token = 0, typing = 0;
       const render = (i) => {
         resBox.innerHTML = QUERIES[i].ids.map((id) => {
           const it = ITEMS[id];
           const pos = it.pos ? ` style="object-position:${it.pos}"` : '';
           const k = it.k ? `<span class="res__k">${esc(it.k)}</span>` : '';
-          return `<li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__s" src="${it.s}" alt="" decoding="async"${pos}><img class="res__f" src="${it.f}" alt="${esc(it.k ? `${it.k}: ${it.t}` : it.t)}" decoding="async"${pos}>${k}</div></div><p class="res__cap"><b>${esc(it.t)}</b><span>${esc(it.m)}</span></p></li>`;
+          return `<li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="${it.f}" alt="${esc(it.k ? `${it.k}: ${it.t}` : it.t)}" decoding="async"${pos}>${k}</div></div><p class="res__cap"><b>${esc(it.t)}</b><span>${esc(it.m)}</span></p></li>`;
         }).join('');
-        cells = $$('.res__i', resBox);
-        if (!RM) cells.forEach((c) => c.classList.add('is-soft'));
       };
-      // все карточки проявляются одинаково, по очереди — без особого эффекта на первой
-      const focusIn = (stagger = 110) => {
-        const now = cells;
-        now.forEach((c, k) => {
-          Promise.all($$('.res__f', c).map(ready)).then(() => setTimeout(() => {
-            if (cells === now) c.classList.remove('is-soft');
-          }, 160 + k * stagger));
-        });
-      };
-      // Автосмена стирает и набирает неспешно; по клику запрос стирается сразу, набор быстрый
-      const typeQuery = (text, fast) => new Promise((resolve) => {
-        clearTimeout(typing);
-        if (RM) { qText.textContent = text; resolve(); return; }
-        let cur = fast ? '' : qText.textContent;
-        const speed = fast ? 18 : 36;
-        const erase = () => {
-          if (cur.length) { cur = cur.slice(0, -1); qText.textContent = cur; typing = setTimeout(erase, 12); }
-          else { qText.textContent = ''; let i = 0; const add = () => { i += 1; qText.textContent = text.slice(0, i); if (i < text.length) typing = setTimeout(add, speed); else resolve(); }; typing = setTimeout(add, fast ? 40 : 120); }
-        };
-        erase();
-      });
-      const swap = (i, tok, fast) => {
-        if (tok !== token) return;
-        if (RM) { render(i); return; }
-        resBox.classList.add('is-swap');
-        setTimeout(() => {
-          if (tok !== token) return;
-          render(i);
-          void resBox.offsetWidth;
-          resBox.classList.remove('is-swap');
-          focusIn(fast ? 90 : 110);
-        }, 200);
-      };
-      const setQuery = (i, fast = false) => {
-        qI = i;
-        const tok = ++token;
+      const setQuery = (i) => {
         chips.forEach((c, k) => c.setAttribute('aria-pressed', String(k === i)));
-        QUERIES[i].ids.forEach((id) => preload(ITEMS[id].f));
-        cells.forEach((c) => c.classList.add('is-soft'));
-        const typed = typeQuery(QUERIES[i].q, fast);
-        if (fast) swap(i, tok, fast); else typed.then(() => swap(i, tok, fast));
+        qText.textContent = QUERIES[i].q;
+        render(i);
       };
-      qI = START;
-      qText.textContent = QUERIES[START].q;
-      render(START);
-      QUERIES.forEach((q) => q.ids.forEach((id) => preload(ITEMS[id].s)));
-      if (RM || !hasIO) cells.forEach((c) => c.classList.remove('is-soft'));
-      else once(resBox, () => focusIn(110), 0.35);
-      const qLoop = makeLoop(resBox, () => setQuery((qI + 1) % QUERIES.length), () => 6200, { threshold: 0.35 });
-      chips.forEach((c, k) => c.addEventListener('click', () => { qLoop.stop(); setQuery(k, true); }));
-      holdWhile(qLoop, [resBox, $('.sbar', sec), chipsBox]);
-      // каретка мигает только пока строка поиска на экране
-      const bar = $('.sbar', sec);
-      let barIn = false;
-      const syncBar = () => bar.classList.toggle('is-live', barIn && !document.hidden && !RM);
-      if (hasIO) new IntersectionObserver(([e]) => { barIn = e.isIntersecting; syncBar(); }, { threshold: 0.5 }).observe(bar);
-      document.addEventListener('visibilitychange', syncBar);
-      loops.push({ sync: syncBar });
+      setQuery(START);
+      // фото остальных подсказок грузим заранее — по клику выдача меняется без пустых карточек
+      QUERIES.forEach((q) => q.ids.forEach((id) => { const im = new Image(); im.decoding = 'async'; im.src = ITEMS[id].f; }));
+      chips.forEach((c, k) => c.addEventListener('click', () => setQuery(k)));
     }
   }
 
