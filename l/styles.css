@@ -884,6 +884,11 @@ html[data-skin="gallery"] .how1__ttl { font-size: 23px; }
 }
 .how1__card:hover .how1__num, .how1__card:focus-visible .how1__num { background: var(--ink); color: #fff; box-shadow: none; }
 html[data-skin="gallery"] .how1__num { border-radius: 4px; font: 500 18px/1 var(--serif); font-variant-numeric: lining-nums; }
+/* порядок чтения: номера загораются чёрным по очереди 1 → 2 → 3 (block.js ставит .is-lit), «щелчок» при загорании */
+.how1__num.is-lit { background: var(--ink); color: #fff; box-shadow: none; }
+.how1__num.is-pop { animation: how1-pop 0.55s var(--ease-out); }
+@keyframes how1-pop { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .how1__num.is-pop { animation: none; } }
 .how1__plus { margin-top: 12px; padding-left: 39px; }
 .how1__plus li { position: relative; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
 .how1__plus li + li { margin-top: 3px; }

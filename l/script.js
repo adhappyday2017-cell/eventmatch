@@ -361,6 +361,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
 /* Как работает EventMatch · вариант L.
    1) Веер раскрывается из стопки при появлении (CSS по классу .in), потом наведение отвечает быстрее (.is-set).
    2) В карточке поиска запросы сменяются: печатается запрос — подсвечивается строка выдачи «коллега / мастер-класс / эфир».
+   3) Номера шагов загораются чёрным по очереди 1 → 2 → 3, держатся, гаснут и повторяют — так видно, в каком порядке читать карточки.
    Один процесс на экран; пауза вне экрана и при скрытой вкладке; «меньше движения» — статичный первый запрос. */
 (() => {
   'use strict';
@@ -412,12 +413,34 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     busy = false;
   }
 
-  if (RM || !hasIO) return;
+  // номера шагов: 1 → 2 → 3 по очереди, накопительно; свой таймер, чтобы не мешать печати запросов
+  const nums = Array.from(root.querySelectorAll('.how1__num'));
+  let stepTimer = 0, stepBusy = false;
+  const stepWait = (ms) => new Promise((res) => { stepTimer = setTimeout(res, ms); });
+  const light = (k) => { const n = nums[k]; n.classList.add('is-lit', 'is-pop'); setTimeout(() => n.classList.remove('is-pop'), 600); };
+  const unlight = () => nums.forEach((n) => n.classList.remove('is-lit', 'is-pop'));
+  async function steps() {
+    if (stepBusy) return;
+    stepBusy = true;
+    await stepWait(900);                                 // сначала веер раскрывается
+    while (running()) {
+      for (let k = 0; k < nums.length && running(); k++) { light(k); await stepWait(900); }
+      if (!running()) break;
+      await stepWait(3600);                              // все три горят — пауза, чтобы прочитать
+      if (!running()) break;
+      unlight();
+      await stepWait(1000);
+    }
+    clearTimeout(stepTimer);
+    stepBusy = false;
+  }
+
+  if (RM || !hasIO) { nums.forEach((n) => n.classList.add('is-lit')); return; }
   new IntersectionObserver((es) => es.forEach((e) => {
     visible = e.isIntersecting;
-    if (visible) { setFan(); cycle(); }
+    if (visible) { setFan(); cycle(); steps(); }
   }), { threshold: 0.35 }).observe(root.querySelector('.how1__fan'));
-  document.addEventListener('visibilitychange', () => { if (running()) cycle(); });
+  document.addEventListener('visibilitychange', () => { if (running()) { cycle(); steps(); } });
 })();
 
 
