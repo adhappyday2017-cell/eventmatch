@@ -1096,7 +1096,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
       if (!a.dataset.base) a.dataset.base = a.getAttribute('href') || '';
       if (!a.dataset.base.startsWith('../')) return;
       const u = new URL(a.dataset.base, location.href);
-      if (/\/(l|m|n|l-sepia)\/$/.test(u.pathname)) a.href = mark(u, st).href;
+      if (/\/(l|m|n|l-sepia|l2)\/$/.test(u.pathname)) a.href = mark(u, st).href;
     });
     if (save) {
       try { localStorage.setItem('em-skin', st.skin); localStorage.setItem('em-btn', st.btn); } catch (e) { /* приватный режим — просто не помним */ }
