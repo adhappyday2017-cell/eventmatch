@@ -1150,7 +1150,8 @@ html[data-skin="gallery"] .caps .caps__lc, html[data-skin="gallery"] .caps .caps
 html[data-skin="gallery"] .caps .caps__net b, html[data-skin="gallery"] .caps .caps__price b, html[data-skin="gallery"] .caps .caps__slot-p { font-size: 24px; }
 html[data-skin="gallery"] .caps .caps__tk-d b { font-size: 44px; }
 html[data-skin="gallery"] .caps .caps__prod-t, html[data-skin="gallery"] .caps .caps__slot-t { font-size: 22px; letter-spacing: 0; }
-html[data-skin="gallery"] .caps .caps__notes b { background: var(--accent); }
+/* номера заметок разбора — бледный тон сердца бренда (#6a3fd0): нежная лавандовая заливка, цифра фиолетовая */
+.caps .caps__notes b, html[data-skin="gallery"] .caps .caps__notes b { background: #e9e2fb; color: #5b34c4; }
 
 /* шкала шрифтов «Галереи» (круг 3): названия карточек 16 px, подписи и мета — 14 px, служебные — от 13 px.
    Чтобы блок остался в один экран, поля панели и сцены чуть ужаты. */
