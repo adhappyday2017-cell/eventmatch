@@ -18,28 +18,26 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   /* ── Данные умного поиска ───────────────────────────────────────────── */
-  // Подписи — только роль и город (имена не придумываем). Работы — Анастасии Агаповой (agapovanastya.ru,
-  // с её согласия) там, где подходят по роли; видео и reels — кадры ролей. pos — кадр, в котором не режется лицо.
+  // Подписи — только роль и город (имена не придумываем; города — Ростов-на-Дону, Краснодар, Москва).
+  // Работы — Анастасии Агаповой (agapovanastya.ru, с её согласия), без повторов с остальной страницей.
+  // pos — точка кадра из img/ag/focal.json, чтобы лица не резались (у ag-025 макушка у самого края — кадр от верха).
+  // Подписи — в одну строку (карточка 256 px).
   // Агаповой в выдаче коллег нет (она не «открыта к работе»), зато её обучение находится по запросу про курс.
   const ITEMS = {
-    ph1: { f: 'img/r/ag-013-560.webp', s: 'img/r/ag-013-s.webp', pos: '50% 0%', t: 'Фотограф', m: 'Ростов‑на‑Дону' },
-    vid1: { f: 'img/t/f-r-video2-400.webp', s: 'img/t/f-r-video2-s.webp', t: 'Видеограф', m: 'Санкт‑Петербург' },
-    ph2: { f: 'img/r/ag-043-560.webp', s: 'img/r/ag-043-s.webp', pos: '50% 0%', t: 'Фотограф', m: 'Москва' },
-    reels1: { f: 'img/t/f-r-reelsph-400.webp', s: 'img/t/f-r-reelsph-s.webp', t: 'Reels-мейкер', m: 'Москва' },
-    reels2: { f: 'img/t/f-r-reels2-400.webp', s: 'img/t/f-r-reels2-s.webp', t: 'Reels-мейкер', m: 'Ростов‑на‑Дону' },
-    vid2: { f: 'img/t/f-r-videoled-400.webp', s: 'img/t/f-r-videoled-s.webp', t: 'Видеограф', m: 'Краснодар' },
+    ph1: { f: 'img/r/ag-036-560.webp', s: 'img/r/ag-036-s.webp', pos: '50% 31%', t: 'Фотограф', m: 'Ростов‑на‑Дону' },
+    vid1: { f: 'img/r/ag-037-560.webp', s: 'img/r/ag-037-s.webp', pos: '50% 30%', t: 'Видеограф', m: 'Краснодар' },
+    ph2: { f: 'img/r/ag-025-560.webp', s: 'img/r/ag-025-s.webp', pos: '50% 0%', t: 'Фотограф', m: 'Москва' },
     mod1: { f: 'img/t/f-r-model2-400.webp', s: 'img/t/f-r-model2-s.webp', t: 'Модель', m: 'Москва' },
-    mod2: { f: 'img/r/ag-041-560.webp', s: 'img/r/ag-041-s.webp', pos: '50% 0%', t: 'Модель', m: 'Санкт‑Петербург' },
-    mod3: { f: 'img/r/ag-076-560.webp', s: 'img/r/ag-076-s.webp', pos: '50% 0%', t: 'Модель', m: 'Казань' },
-    edu1: { f: 'img/r/ag-061-560.webp', s: 'img/r/ag-061-s.webp', pos: '50% 0%', k: 'Мастер-класс', t: '«Свадебный фотограф»', m: 'Анастасия Агапова · 2 дня, до 15 человек' },
-    edu2: { f: 'img/r/ag-003-560.webp', s: 'img/r/ag-003-s.webp', pos: '50% 0%', k: 'Эфир · 28 октября', t: 'Женский портрет: свет из окна', m: 'Анастасия Агапова · 19:00 мск, онлайн' },
-    edu3: { f: 'img/r/ag-017-560.webp', s: 'img/r/ag-017-s.webp', pos: '50% 0%', k: 'Курс', t: 'Свет в банкетном зале без вспышки', m: 'фотограф · онлайн, в своём темпе' }
+    mod2: { f: 'img/r/ag-041-560.webp', s: 'img/r/ag-041-s.webp', pos: '50% 32%', t: 'Модель', m: 'Краснодар' },
+    mod3: { f: 'img/r/ag-078-560.webp', s: 'img/r/ag-078-s.webp', pos: '50% 38%', t: 'Модель', m: 'Ростов‑на‑Дону' },
+    edu1: { f: 'img/r/ag-061-560.webp', s: 'img/r/ag-061-s.webp', pos: '50% 0%', k: 'Мастер-класс · 2 дня', t: '«Свадебный фотограф»', m: 'Анастасия Агапова · до\u00a015\u00a0человек' },
+    edu2: { f: 'img/r/ag-003-560.webp', s: 'img/r/ag-003-s.webp', pos: '50% 0%', k: 'Эфир · 28 октября', t: 'Женский портрет: свет из окна', m: 'Анастасия Агапова · 19:00\u00a0мск' },
+    edu3: { f: 'img/r/ag-032-560.webp', s: 'img/r/ag-032-s.webp', pos: '50% 48%', k: 'Курс', t: 'Свет в\u00a0банкетном зале', m: 'фотограф · онлайн, в\u00a0своём темпе' }
   };
-  // Четыре подсказки: три — коллеги в команду, четвёртая — обучение (пункт 2 «Как работает»).
+  // Три подсказки: две — коллеги в команду, третья — обучение (пункт 2 «Как работает»).
   // На «рыжую с веснушками» первая модель действительно рыжая с веснушками.
   const QUERIES = [
     { q: 'второй фотограф или видеограф на субботу', ids: ['ph1', 'vid1', 'ph2'] },
-    { q: 'reels-мейкер на съёмку мастер-класса', ids: ['reels1', 'reels2', 'vid2'] },
     { q: 'модель на мастер-класс, рыжая с веснушками', ids: ['mod1', 'mod2', 'mod3'] },
     { q: 'курс по свету для свадебного фотографа', ids: ['edu1', 'edu2', 'edu3'] }
   ];
@@ -292,9 +290,25 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   /* ── 11. Финал: веер, сердце, поле ника ──────────────────────────────── */
   {
     const fan = $('#fan'), tilt = $('#fan-tilt'), fin = $('#final');
+    const head = $('#final-title');
+    // Заголовок: строки проявляются по очереди (≈ 1,2 с каждая), затем сердце рисуется контуром ≈ 2,6 с
+    // и заливается (тайминги — в CSS). Старт — когда заголовок целиком в верхних двух третях экрана,
+    // а не у самого края. Веер раскрывается вместе с заголовком; если до него докрутили раньше — сам по себе.
+    if (head) {
+      if (RM || !hasIO) head.classList.add('is-in');
+      else {
+        const io = new IntersectionObserver(([e]) => {
+          if (!e.isIntersecting) return;
+          io.disconnect();
+          head.classList.add('is-in');
+          if (fan) setTimeout(() => fan.classList.add('is-ready'), 350);
+        }, { rootMargin: '0px 0px -30% 0px', threshold: 1 });
+        io.observe(head);
+      }
+    }
     if (fan && tilt && fin) {
       const ready = () => fan.classList.add('is-ready');
-      if (RM || !hasIO) ready(); else once(fan, () => setTimeout(ready, 120), 0.3);
+      if (RM || !hasIO) ready(); else once(fan, () => setTimeout(ready, 120), 0.6);
       fin.addEventListener('mousemove', (e) => {
         if (RM) return;
         const r = fan.getBoundingClientRect();
@@ -303,8 +317,6 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
         tilt.style.setProperty('--rx', `${(-y * 5).toFixed(2)}deg`);
       });
       fin.addEventListener('mouseleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
-      const heart = $('#final-heart');
-      if (heart) { if (RM || !hasIO) heart.classList.add('in'); else once(heart, () => heart.classList.add('in'), 0.6); }
     }
 
     const TR = { а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya', ' ': '-' };
@@ -334,6 +346,8 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     wallSync();
     if (RM) {
       rv.forEach((n) => n.classList.add('in'));
+      const fh = $('#final-title'); if (fh) fh.classList.add('is-in');
+      const fn = $('#fan'); if (fn) fn.classList.add('is-ready');
       $$('.res__i').forEach((c) => c.classList.remove('is-soft'));
     }
   };
@@ -652,12 +666,12 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     { id: 'e6', d: '2026-10-13', t: '12:00', title: 'Разбор портфолио: свадебный репортаж', host: 'фотограф', topic: 'Фото', fmt: 'Разбор', rec: true, dur: '2 часа' },
     { id: 'e7', d: '2026-10-14', t: '19:00', title: 'Свадебные причёски: тренды сезона', host: 'стилист по волосам', topic: 'Образ', fmt: 'Эфир', rec: true },
     { id: 'e8', d: '2026-10-15', t: '18:00', title: 'Звук на церемонии: петлички и запас', host: 'видеограф', topic: 'Видео и reels', fmt: 'Эфир', rec: true },
-    { id: 'e9', d: '2026-10-20', t: '11:00', title: 'Свет в студии: мастер-класс вживую', host: 'фотограф', topic: 'Фото', fmt: 'Офлайн-встреча', off: true, city: 'Санкт‑Петербург' },
+    { id: 'e9', d: '2026-10-20', t: '11:00', title: 'Свет в студии: мастер-класс вживую', host: 'фотограф', topic: 'Фото', fmt: 'Офлайн-встреча', off: true, city: 'Краснодар' },
     { id: 'e10', d: '2026-10-21', t: '19:00', title: 'Как ставить цену на съёмку', host: 'фотограф', topic: 'Фото', fmt: 'Эфир', rec: true },
     { id: 'e11', d: '2026-10-23', t: '19:00', title: 'Декор стола: свечи, свет и текстиль', host: 'декоратор', topic: 'Организация и декор', fmt: 'Эфир', mine: true },
     { id: 'e12', d: '2026-10-26', t: '20:00', title: 'Смета свадьбы без сюрпризов', host: 'организатор', topic: 'Организация и декор', fmt: 'Эфир' },
     { id: 'e13', d: '2026-10-27', t: '12:00', title: 'Ведущий и диджей: как делить вечер', host: 'ведущий', topic: 'Ведущие', fmt: 'Разбор', dur: '2 часа' },
-    { id: 'e14', d: '2026-10-28', t: '19:00', title: 'Женский портрет: свет из окна', host: NASTYA, topic: 'Фото', fmt: 'Эфир', who: 'Фотографы и визажисты' },
+    { id: 'e14', d: '2026-10-28', t: '19:00', title: 'Женский портрет: свет из\u00a0окна', host: NASTYA, topic: 'Фото', fmt: 'Эфир', who: 'Фотографы и визажисты' },
     { id: 'e15', d: '2026-10-29', t: '19:00', title: 'Как упаковать первый мастер-класс', host: 'фотограф', topic: 'Фото', fmt: 'Эфир' },
     { id: 'e16', d: '2026-10-30', t: '11:00', title: 'Совместная съёмка: модель, визажист, фотограф', host: 'визажист', topic: 'Образ', fmt: 'Офлайн-встреча', off: true, city: 'Москва', who: 'Модели, визажисты, фотографы' },
     { id: 'n1', d: '2026-11-03', t: '19:00', title: 'Сколько стоит твой разбор', host: 'ведущий', topic: 'Ведущие', fmt: 'Эфир' },
@@ -715,7 +729,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   /* ── Вид «Месяц» ── */
   // чип эфира: время, значок офлайна и название одним абзацем, дальше многоточие.
   // «Ты записан» рамкой не выделяем (легенды нет): выделен только выбранный эфир; запись видна в панели, списке и по тумблеру «Мои записи»
-  const chip = (e, k) => `<button type="button" style="--d:${k * 40}ms" class="cch${isPast(e) ? ' past' : ''}${state.sel === e.id && cal.classList.contains('is-open') ? ' is-sel' : ''}" data-ev="${e.id}" aria-pressed="${state.sel === e.id}" title="${esc(e.title)}" aria-label="${esc(e.title)}, ${dateText(e)}, ${e.t}${e.off ? ', офлайн' : ''}${e.mine ? ', ты записан' : ''}"><span class="cch__x"><b>${e.t}</b>${e.off ? ICON('pin') : ''}${esc(e.title)}</span></button>`;
+  const chip = (e, k) => `<button type="button" style="--d:${k * 40}ms" class="cch${isPast(e) ? ' past' : ''}${state.sel === e.id && cal.classList.contains('is-open') ? ' is-sel' : ''}" data-ev="${e.id}" aria-pressed="${state.sel === e.id}" title="${esc(e.title)}" aria-label="${esc(e.title)}, ${dateText(e)}, ${e.t}${e.off ? ', офлайн' : ''}${e.mine ? ', ты записан' : ''}"><span class="cch__x"><b>${e.t}</b><wbr>${e.off ? ICON('pin') : ''}${esc(e.title)}</span></button>`;
   let gridSeen = false;
   const drawMonth = (shown, all) => {
     const [y, m] = state.ym.split('-').map(Number);
@@ -743,7 +757,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     }
   };
 
-  /* ── Вид «Полгода» ── */
+  /* ── Вид «Полгода»: при открытой панели — сетка 3 × 2 слева от неё ── */
   const drawHalf = () => {
     const months = Array.from({ length: 6 }, (_, i) => ymAdd(HALF_FROM, i));
     body.innerHTML = `<div class="chalf">${months.map((ym) => {
@@ -867,18 +881,13 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
     draw();
     mineB.focus({ preventScroll: true });
   });
-  // панель закрывается, когда выбранного эфира не видно: другой месяц, «Полгода» или «Список»
-  const dropIfHidden = () => {
-    if (!cal.classList.contains('is-open')) return;
-    const e = byId(state.sel);
-    if (state.view !== 'month' || !e || ymOf(e.d) !== state.ym) closeEv();
-  };
-  prevB.addEventListener('click', () => { state.ym = ymAdd(state.ym, -1); dropIfHidden(); draw(); });
-  nextB.addEventListener('click', () => { state.ym = ymAdd(state.ym, 1); dropIfHidden(); draw(); });
+  // панель выбранного эфира закрывает только крестик: при смене месяца и вида («Месяц · Полгода · Список»)
+  // выбор помнится, панель остаётся открытой — вернулись на «Месяц», эфир по-прежнему выделен и открыт
+  prevB.addEventListener('click', () => { state.ym = ymAdd(state.ym, -1); draw(); });
+  nextB.addEventListener('click', () => { state.ym = ymAdd(state.ym, 1); draw(); });
   segB.forEach((b) => b.addEventListener('click', () => {
     state.view = b.dataset.view;
     segB.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    dropIfHidden();
     draw();
   }));
   mineB.addEventListener('click', () => {
@@ -905,7 +914,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
 
 /* ══ блок dohod ══ */
 /* 8. Калькулятор дохода: формат → цена и число продаж → сумма к выплате за вычетом 7%.
-   Пресеты цен — из I (research/16, 19.10.2026); статичная разметка = старт курса: 6 × 30 000 = 180 000 − 12 600 = 167 400 ₽.
+   Пресеты цен — из I (research/16, 19.10.2026); обложка курса — «Настя 1» (img/fs, точка фокуса из img/fs/focal.json); статичная разметка = старт курса: 6 × 30 000 = 180 000 − 12 600 = 167 400 ₽.
    Сумма один раз «досчитывает» от нуля, когда блок дошёл до экрана; «меньше движения» — сразу итог. */
 (() => {
   'use strict';
@@ -921,13 +930,13 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
 
   const FEE = 0.07;
   const FORMATS = [
-    { key: 'course', badge: 'Курс', title: 'Свадебная съёмка: 8 недель с обратной связью', cover: 'img/dohod/ag-051-900.webp', pos: '55% 25%',
+    { key: 'course', badge: 'Курс', title: 'Свадебная съёмка: 8\u00a0недель с\u00a0обратной связью', cover: 'img/fs/fs-nastya-1.webp', pos: '60% 17%',
       price: 30000, min: 15000, max: 90000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Продаж в месяц', unit: ['продажа', 'продажи', 'продаж'] },
-    { key: 'master', badge: 'Мастер-класс', title: 'Мастер-класс офлайн: съёмка в студии', cover: 'img/dohod/ag-022-900.webp', pos: '39% 26%',
+    { key: 'master', badge: 'Мастер-класс', title: 'Мастер-класс офлайн: съёмка в\u00a0студии', cover: 'img/dohod/ag-022-900.webp', pos: '39% 26%',
       price: 55000, min: 7900, max: 149900, step: 100, sales: 10, maxSales: 30, salesLabel: 'Мест в потоке', unit: ['место', 'места', 'мест'], note: '1 поток в месяц' },
-    { key: 'video', badge: 'Видеоурок', title: 'Репортаж на свадьбе: 1,5 часа', cover: 'img/dohod/ag-026-900.webp', pos: '61% 32%',
+    { key: 'video', badge: 'Видеоурок', title: 'Репортаж на\u00a0свадьбе: 1,5\u00a0часа', cover: 'img/dohod/ag-026-900.webp', pos: '61% 32%',
       price: 5900, min: 2990, max: 9900, step: 10, sales: 28, maxSales: 200, salesLabel: 'Продаж в месяц', unit: ['продажа', 'продажи', 'продаж'] },
-    { key: 'review', badge: 'Разбор', title: 'Разбор портфолио: до 3 часов один на один', cover: 'img/dohod/ag-072-900.webp', pos: '51% 26%',
+    { key: 'review', badge: 'Разбор', title: 'Разбор портфолио: до\u00a03\u00a0часов один на\u00a0один', cover: 'img/dohod/ag-072-900.webp', pos: '51% 26%',
       price: 15000, min: 5000, max: 20000, step: 500, sales: 6, maxSales: 40, salesLabel: 'Консультаций в месяц', unit: ['консультация', 'консультации', 'консультаций'] }
   ];
 
@@ -1105,43 +1114,63 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
 })();
 
 
-/* Переключатель оформления на плашке прототипа: EventMatch ↔ «Галерея» (Figma).
-   Начальное значение ставит строчка в <head> (см. build.py: HEAD_SKIN) — до отрисовки, без мигания.
-   Выбор помнится в браузере и дописывается в ссылки на соседние варианты (?skin=gallery). */
+/* Переключатели на плашке прототипа: оформление EventMatch ↔ «Галерея» (Figma) и форма кнопок «мягкие · круглые».
+   Начальные значения ставит строчка в <head> (см. build.py: HEAD_SKIN) — до отрисовки, без мигания.
+   Выбор помнится в браузере и дописывается в адрес и в ссылки на соседние варианты L/M/N (?skin=gallery&btn=pill).
+   Форма кнопок видна и действует только в «Галерее»: в EventMatch кнопки всегда полукруглые. */
 (() => {
   const root = document.documentElement;
   const bar = document.querySelector('.variant');
   if (!bar) return;
-  const box = document.createElement('span');
-  box.className = 'variant__skin';
-  box.setAttribute('role', 'group');
-  box.setAttribute('aria-label', 'Оформление');
-  box.innerHTML = '<button type="button" data-skin="em">EventMatch</button><button type="button" data-skin="gallery">Галерея</button>';
-  bar.appendChild(box);
+  const group = (cls, label, html) => {
+    const box = document.createElement('span');
+    box.className = cls;
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', label);
+    box.innerHTML = html;
+    bar.appendChild(box);
+    return box;
+  };
+  const skinBox = group('variant__skin', 'Оформление',
+    '<button type="button" data-skin="em">EventMatch</button><button type="button" data-skin="gallery">Галерея</button>');
+  const btnBox = group('variant__btn', 'Кнопки',
+    '<span aria-hidden="true">Кнопки:</span><button type="button" data-btn="soft">мягкие</button><button type="button" data-btn="pill">круглые</button>');
 
-  const links = () => bar.querySelectorAll('a[href^="../"]');
-  const apply = (skin, save) => {
-    root.dataset.skin = skin;
-    box.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.skin === skin)));
-    // ссылки на L/M/N несут оформление дальше; на старые варианты A–K — без параметра
-    links().forEach((a) => {
-      const u = new URL(a.getAttribute('href'), location.href);
-      if (/\/(l|m|n)\/$/.test(u.pathname)) {
-        if (skin === 'gallery') u.searchParams.set('skin', 'gallery'); else u.searchParams.delete('skin');
-        a.href = u.href;
-      }
+  const state = () => ({ skin: root.dataset.skin === 'gallery' ? 'gallery' : 'em', btn: root.dataset.btn === 'pill' ? 'pill' : 'soft' });
+  // ?skin=gallery и ?btn=pill — только непустые отличия от значений по умолчанию;
+  // btn=pill — только в «Галерее» (в EventMatch он ни на что не влияет), сам выбор помнится в браузере
+  const mark = (u, { skin, btn }) => {
+    if (skin === 'gallery') u.searchParams.set('skin', 'gallery'); else u.searchParams.delete('skin');
+    if (skin === 'gallery' && btn === 'pill') u.searchParams.set('btn', 'pill'); else u.searchParams.delete('btn');
+    return u;
+  };
+  const paint = (save) => {
+    const st = state();
+    skinBox.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.skin === st.skin)));
+    btnBox.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.btn === st.btn)));
+    // ссылки на L/M/N несут оформление и кнопки дальше; на старые варианты A–K — без параметров.
+    // Исходный адрес («../m/») хранится в data-base: после первой подстановки href уже абсолютный.
+    bar.querySelectorAll('a').forEach((a) => {
+      if (!a.dataset.base) a.dataset.base = a.getAttribute('href') || '';
+      if (!a.dataset.base.startsWith('../')) return;
+      const u = new URL(a.dataset.base, location.href);
+      if (/\/(l|m|n)\/$/.test(u.pathname)) a.href = mark(u, st).href;
     });
     if (save) {
-      try { localStorage.setItem('em-skin', skin); } catch (e) { /* приватный режим — просто не помним */ }
-      const u = new URL(location.href);
-      if (skin === 'gallery') u.searchParams.set('skin', 'gallery'); else u.searchParams.delete('skin');
-      history.replaceState(null, '', u.href);
-      document.dispatchEvent(new CustomEvent('skinchange', { detail: { skin } }));
+      try { localStorage.setItem('em-skin', st.skin); localStorage.setItem('em-btn', st.btn); } catch (e) { /* приватный режим — просто не помним */ }
+      history.replaceState(null, '', mark(new URL(location.href), st).href);
+      document.dispatchEvent(new CustomEvent('skinchange', { detail: st }));
     }
   };
-  box.addEventListener('click', (e) => {
+  skinBox.addEventListener('click', (e) => {
     const b = e.target.closest('button[data-skin]');
-    if (b) apply(b.dataset.skin, true);
+    if (b) { root.dataset.skin = b.dataset.skin; paint(true); }
   });
-  apply(root.dataset.skin === 'gallery' ? 'gallery' : 'em', false);
+  btnBox.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-btn]');
+    if (b) { root.dataset.btn = b.dataset.btn; paint(true); }
+  });
+  root.dataset.skin = state().skin;
+  root.dataset.btn = state().btn;
+  paint(false);
 })();

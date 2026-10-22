@@ -159,6 +159,7 @@
   --uni: "Unbounded", "Onest", system-ui, sans-serif;     /* заголовки, крупные числа */
   --ui: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
   --serif: "Unbounded", "Onest", sans-serif;              /* акцентный шрифт имён и цифр; в gallery — Cormorant */
+  --num: "Unbounded", "Onest", sans-serif;                /* крупные суммы (калькулятор) — в обоих оформлениях Unbounded 300 */
   --h-weight: 300;
   --h-track: -0.03em;
   --h1: clamp(48px, 3.75vw, 56px);
@@ -205,28 +206,33 @@ html[data-skin="gallery"] {
   --uni: "Forum", "Cormorant", Georgia, serif;           /* ₽ нет в Forum — его рисует Cormorant */
   --ui: "Montserrat", system-ui, -apple-system, sans-serif;
   --serif: "Cormorant", Georgia, serif;
+  --num: "Unbounded", "Onest", sans-serif;
   --h-weight: 400;
   --h-track: 0;
   --h1: clamp(54px, 4.6vw, 68px);
   --h2: clamp(38px, 3.4vw, 50px);
   --h3: 30px;
-  --fs: 15.5px;
-  --fs-lead: 17px;
+  /* шкала круга 3: текст 16,5 / лид 18,5; подписи и чипы — от 14, служебное — от 13, капс — 13–13,5 с разрядкой 0,05em */
+  --fs: 16.5px;
+  --fs-lead: 18.5px;
 
   --r-lg: 24px;
   --r-md: 12px;
   --r-sm: 8px;
-  --r-btn: 4px;
+  --r-btn: 10px;               /* мягкое скругление кнопок, чипов, вкладок; ?btn=pill → 999px (ниже) */
   --r-photo: 2px;
   --btn-case: uppercase;
-  --btn-track: 0.06em;
-  --btn-fs: 12.5px;
+  --btn-track: 0.05em;
+  --btn-fs: 13.5px;
   --btn-w: 500;
 
   --sh-1: 0 1px 2px rgba(60, 40, 30, 0.04), 0 12px 30px -16px rgba(60, 40, 30, 0.16);
   --sh-2: 0 2px 6px rgba(60, 40, 30, 0.04), 0 30px 60px -32px rgba(60, 40, 30, 0.24);
   --sh-3: 0 26px 52px -26px rgba(60, 40, 30, 0.3);
 }
+
+/* «Галерея» с полукруглыми кнопками: ?btn=pill → html[data-btn="pill"] (ставит строчка в <head>, переключатель — skin.js) */
+html[data-skin="gallery"][data-btn="pill"] { --r-btn: 999px; }
 
 /* ── Основа ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
@@ -274,6 +280,7 @@ html[data-skin="gallery"] .h1, html[data-skin="gallery"] .h2 { line-height: 1.08
 .btn:hover { background: #2b2b30; box-shadow: 0 12px 24px -14px rgba(18, 18, 20, 0.5); }
 .btn:active { transform: translateY(1px); }
 .btn--sm { height: 40px; padding: 0 18px; font-size: calc(var(--btn-fs) - 1px); }
+html[data-skin="gallery"] .btn--sm { padding: 0 20px; font-size: 13px; }
 .btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line-2); }
 .btn--ghost:hover { background: var(--white); box-shadow: inset 0 0 0 1.5px var(--ink); }
 html[data-skin="gallery"] .btn--ghost { box-shadow: inset 0 0 0 1px var(--ink); }
@@ -294,9 +301,12 @@ html.js:not(.ready) [data-rv] { animation: rv-safe 0s 2.5s forwards; }
   font: 500 12px/16px "Onest", system-ui, sans-serif; letter-spacing: 0; text-transform: none;
 }
 .variant a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
-.variant__skin { display: inline-flex; gap: 2px; padding: 2px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); }
-.variant__skin button { padding: 3px 9px; border-radius: 999px; color: rgba(255, 255, 255, 0.75); font: inherit; }
-.variant__skin button[aria-pressed="true"] { background: #fff; color: #121214; }
+.variant__skin, .variant__btn { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); }
+.variant__skin button, .variant__btn button { padding: 3px 9px; border-radius: 999px; color: rgba(255, 255, 255, 0.75); font: inherit; }
+.variant__skin button[aria-pressed="true"], .variant__btn button[aria-pressed="true"] { background: #fff; color: #121214; }
+.variant__btn > span { padding: 0 4px 0 8px; color: rgba(255, 255, 255, 0.6); }
+/* «Кнопки: мягкие · круглые» — только в «Галерее» (в EventMatch кнопки всегда полукруглые) */
+html:not([data-skin="gallery"]) .variant__btn { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -316,6 +326,7 @@ html.js:not(.ready) [data-rv] { animation: rv-safe 0s 2.5s forwards; }
 }
 .skip:focus { top: 12px; }
 .btn--lg { height: 56px; padding: 0 32px; font-size: calc(var(--btn-fs) + 1px); }
+html[data-skin="gallery"] .btn--lg { font-size: var(--btn-fs); } /* капс «Галереи» — 13,5 px */
 
 /* ── Шапка ───────────────────────────────────────────────────── */
 .hdr {
@@ -401,7 +412,10 @@ html.js:not(.ready) [data-rv] { animation: rv-safe 0s 2.5s forwards; }
 /* подпись: в паспарту — на нижнем поле; без рамки — полосой снизу при наведении */
 .cc__cap { font-size: max(11px, calc(12.5 * var(--u))); line-height: 1.3; color: var(--ink-2); }
 .cc--mat .cc__cap span, .cc--mat .cc__cap b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cc--mat .cc__cap { display: flex; flex-direction: column; justify-content: center; height: calc(44 * var(--u)); }
+.cc--mat .cc__cap { display: flex; flex-direction: column; justify-content: center; height: calc(50 * var(--u)); }
+/* подпись в паспарту — роль и город двумя строками: крупнее и без многоточий */
+.cc__role { color: var(--ink); line-height: 1.25; }
+.cc__city { margin-top: 1px; color: var(--ink-3); line-height: 1.25; }
 .cc--mat.cc--ag .cc__cap { flex-direction: row; align-items: center; justify-content: flex-start; gap: 9px; height: calc(54 * var(--u)); }
 .cc__ava { flex: none; width: 26px; height: 26px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
 .cc__who { display: flex; flex-direction: column; min-width: 0; }
@@ -413,6 +427,8 @@ html.js:not(.ready) [data-rv] { animation: rv-safe 0s 2.5s forwards; }
   opacity: 0; transition: opacity 0.25s var(--ease);
 }
 .cc:not(.cc--mat):hover .cc__cap, .cc:not(.cc--mat):focus-within .cc__cap { opacity: 1; }
+.cc:not(.cc--mat) .cc__role, .cc:not(.cc--mat) .cc__city { display: block; color: inherit; }
+.cc:not(.cc--mat) .cc__city { opacity: 0.82; }
 .wall__note { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 30px; font-size: 15.5px; line-height: 22px; color: var(--ink-2); white-space: nowrap; }
 .wall__note svg { fill: var(--heart); flex: none; }
 
@@ -546,13 +562,25 @@ html.js .vf__stage { --g: 0; --q: 0; --n: 0; }
 .final__in { text-align: center; }
 .final__love { position: relative; white-space: nowrap; }
 .final__heart { display: inline-block; width: 0.78em; height: 0.72em; margin-left: 0.18em; vertical-align: -0.06em; overflow: visible; }
-.final__heart .fill { fill: var(--heart); opacity: 0; transform-box: fill-box; transform-origin: 50% 60%; transition: opacity 0.4s var(--ease) 1.4s; }
-.final__heart .line { fill: none; stroke: var(--heart); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
-html.js .final__heart.in .line { stroke-dashoffset: 0; transition: stroke-dashoffset 1.4s var(--ease) 0.2s; }
-html.js .final__heart.in .fill { opacity: 1; animation: beat 0.6s var(--ease) 1.5s; }
+/* Появление (скрипт ставит .is-in, когда заголовок целиком в верхних двух третях экрана):
+   строки проявляются по очереди за ≈ 1,2 с; с 1,5 с сердце рисуется контуром ≈ 2,6 с, потом заливается и «бьётся». */
+.final__ln { display: inline-block; }
+html.js .final__ln { opacity: 0; transform: translateY(0.38em); }
+html.js .final__h.is-in .final__ln { opacity: 1; transform: none; transition: opacity 1.2s var(--ease), transform 1.4s var(--ease-out); }
+html.js .final__h.is-in .final__love { transition-delay: 0.5s; }
+.final__heart .fill { fill: var(--heart); opacity: 0; transform-box: fill-box; transform-origin: 50% 60%; }
+.final__heart .line { fill: none; stroke: var(--heart); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+html.js .final__h.is-in .final__heart .line { stroke-dashoffset: 0; transition: stroke-dashoffset 2.6s cubic-bezier(0.45, 0, 0.35, 1) 1.5s; }
+html.js .final__h.is-in .final__heart .fill { opacity: 1; transition: opacity 0.9s var(--ease) 3.9s; animation: beat 0.8s var(--ease) 4.6s; }
 html:not(.js) .final__heart .line { stroke-dashoffset: 0; }
 html:not(.js) .final__heart .fill { opacity: 1; }
-@keyframes beat { 50% { transform: scale(1.1); } }
+/* страховка: скрипт не дошёл — заголовок и сердце видны через 2,5 с */
+html.js:not(.ready) .final__ln { animation: rv-safe 0s 2.5s forwards; }
+html.js:not(.ready) .final__heart .line { animation: heart-safe 0s 2.5s forwards; }
+html.js:not(.ready) .final__heart .fill { animation: heart-safe-fill 0s 2.5s forwards; }
+@keyframes heart-safe { to { stroke-dashoffset: 0; } }
+@keyframes heart-safe-fill { to { opacity: 1; } }
+@keyframes beat { 40% { transform: scale(1.16); } 70% { transform: scale(0.97); } }
 .fan { position: relative; height: 426px; margin-top: 20px; perspective: 1600px; }
 .fan__tilt { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.5s var(--ease); }
 .fc {
@@ -580,8 +608,10 @@ html:not(.js) .final__heart .fill { opacity: 1; }
 .url-chip b { color: var(--ink); font-weight: 500; }
 html.js .fan:not(.is-ready) .fc { opacity: 0; transform: translate(0, 70px) rotate(0) scale(0.9); }
 html.js .fan:not(.is-ready) .url-chip { opacity: 0; transform: translate(-50%, 12px); }
-.fc--l, .fc--r { transition-delay: 0.08s; }
-.fc--far-l, .fc--far-r { transition-delay: 0.16s; }
+/* визитка непрозрачна раньше остальных — снимки выезжают из-под неё, а не просвечивают друг через друга */
+.fc--c { transition: transform 1.1s var(--ease), opacity 0.4s ease-out; }
+.fc--l, .fc--r { transition-delay: 0.1s; }
+.fc--far-l, .fc--far-r { transition-delay: 0.2s; }
 .final__sub { margin-top: 28px; font-size: 20px; line-height: 1.4; color: var(--ink); }
 .nick { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
 .nick__field {
@@ -607,11 +637,13 @@ html.js .fan:not(.is-ready) .url-chip { opacity: 0; transform: translate(-50%, 1
 html.js:not(.ready) .vf__stage { animation: vf-safe 0s 2.5s forwards; }
 @keyframes vf-safe { to { --g: 1; --n: 1; --q: 1; } }
 
-/* ══ Оформление «Галерея» (Figma, HappyGallery): паспарту, тонкие рамки, мелкие подписи капсом ══ */
-html[data-skin="gallery"] .hdr__nav a { padding: 8px 14px; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; }
+/* ══ Оформление «Галерея» (Figma, HappyGallery): паспарту, тонкие рамки, подписи капсом ══
+   Шкала круга 3: текст 16,5, лид 18,5, меню 15; подписи и чипы — от 14, служебное — от 13, капс — 13–13,5 с разрядкой 0,05em. */
+html[data-skin="gallery"] .hdr__in { gap: 24px; }
+html[data-skin="gallery"] .hdr__nav a { padding: 8px 12px; font-size: 15px; font-weight: 500; letter-spacing: 0; }
 html[data-skin="gallery"] .hdr__nav a:hover { background: transparent; }
-html[data-skin="gallery"] .hdr__nav a.is-on::after { left: 14px; right: 14px; height: 1px; }
-html[data-skin="gallery"] .hdr__login { font-size: 13px; }
+html[data-skin="gallery"] .hdr__nav a.is-on::after { left: 12px; right: 12px; height: 1px; }
+html[data-skin="gallery"] .hdr__login { font-size: 15px; }
 /* «Создать профиль» в шапке — тонкая рамка, как «Регистрация» в макете */
 html[data-skin="gallery"] .hdr .btn { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 html[data-skin="gallery"] .hdr .btn:hover { background: var(--ink); color: var(--white); }
@@ -619,20 +651,25 @@ html[data-skin="gallery"] .hdr.is-dark .btn { color: var(--white); box-shadow: i
 html[data-skin="gallery"] .hdr.is-dark .btn:hover { background: var(--white); color: var(--ink); }
 
 html[data-skin="gallery"] .hero { padding-top: clamp(40px, 7vh, 84px); }
-html[data-skin="gallery"] .hero__lead { margin-top: 16px; }
-/* стена: снимки в белом паспарту с мягкой тенью, подписи — мелким капсом, имя — Cormorant */
+html[data-skin="gallery"] .hero__lead { max-width: 900px; margin-top: 18px; text-wrap: balance; }
+/* стена: снимки в белом паспарту с мягкой тенью; подпись — роль и город, у Анастасии имя — Cormorant */
 html[data-skin="gallery"] .cc__in { box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 5%, transparent), 0 18px 36px -22px color-mix(in srgb, var(--ink) 26%, transparent); }
 html[data-skin="gallery"] .cc--mat .cc__in { padding: calc(15 * var(--u)) calc(15 * var(--u)) 0; }
-html[data-skin="gallery"] .cc--mat:not(.cc--ag) .cc__cap > span { font-size: max(10.5px, calc(11.5 * var(--u))); letter-spacing: 0.02em; color: var(--ink-2); }
-html[data-skin="gallery"] .cc__cap b { font: 500 italic max(15px, calc(17 * var(--u)))/1.1 var(--serif); letter-spacing: 0; }
-html[data-skin="gallery"] .cc__who > span { font-size: max(10px, calc(11 * var(--u))); letter-spacing: 0.02em; }
-html[data-skin="gallery"] .wall__note { font-size: 14.5px; }
+html[data-skin="gallery"] .cc__cap { font-size: max(13.5px, calc(14 * var(--u))); }
+html[data-skin="gallery"] .cc__role { font-size: max(14px, calc(14.5 * var(--u))); }
+html[data-skin="gallery"] .cc__city { font-size: max(14px, calc(14 * var(--u))); }
+/* у Анастасии в «Галерее» — подпись-этикетка без аватара; карточка шире остальных (254): «фотограф · Ростов-на-Дону» 14 px помещается целиком и на 1280 */
+html[data-skin="gallery"] .cc--mat.cc--ag .cc__cap { height: calc(58 * var(--u)); }
+html[data-skin="gallery"] .cc--ag .cc__ava { display: none; }
+html[data-skin="gallery"] .cc__cap b { font: 500 italic max(17px, calc(19 * var(--u)))/1.1 var(--serif); letter-spacing: 0; }
+html[data-skin="gallery"] .cc__who > span { margin-top: 2px; font-size: max(14px, calc(14 * var(--u))); }
+html[data-skin="gallery"] .wall__note { font-size: 15.5px; }
 
-html[data-skin="gallery"] .chap__in { font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
-html[data-skin="gallery"] .chap__n { font: 500 18px/1 var(--serif); letter-spacing: 0; font-variant-numeric: lining-nums; }
+html[data-skin="gallery"] .chap__in { gap: 10px; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+html[data-skin="gallery"] .chap__n { font: 500 20px/1 var(--serif); letter-spacing: 0; font-variant-numeric: lining-nums; }
 html[data-skin="gallery"] .chap__in::after { background: var(--line-2); opacity: 0.7; }
 
-/* профиль: фото в белом паспарту, уголки видоискателя — снаружи паспарту */
+/* профиль: фото в белом паспарту, уголки видоискателя — снаружи паспарту; тексты крупнее (круг 3) */
 html[data-skin="gallery"] .vf:not(.vf--dark) .vf__frame { box-shadow: 0 0 0 12px var(--white), var(--sh-2); }
 html[data-skin="gallery"] .vf:not(.vf--dark) .vf__frame i:nth-child(1) { left: -24px; top: -24px; }
 html[data-skin="gallery"] .vf:not(.vf--dark) .vf__frame i:nth-child(2) { right: -24px; top: -24px; }
@@ -640,11 +677,22 @@ html[data-skin="gallery"] .vf:not(.vf--dark) .vf__frame i:nth-child(3) { right: 
 html[data-skin="gallery"] .vf:not(.vf--dark) .vf__frame i:nth-child(4) { left: -24px; bottom: -24px; }
 html[data-skin="gallery"] .vf__frame i { border-radius: 0 !important; border-color: var(--vf-fg-3); }
 html[data-skin="gallery"] .vf__af { display: none; }
-html[data-skin="gallery"] .vf__role { font-size: 15.5px; }
-html[data-skin="gallery"] .vf__q { font: 500 italic 21px/1.4 var(--serif); }
-html[data-skin="gallery"] .vf__sub { font-size: 10.5px; letter-spacing: 0.16em; }
-html[data-skin="gallery"] .vf__cities span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
-html[data-skin="gallery"] .vf--light .does li { box-shadow: none; border-bottom: 1px solid var(--line); border-radius: 0; padding: 10px 2px; }
+html[data-skin="gallery"] .vf__stage { --vf-col: 320px; }
+html[data-skin="gallery"] .vf__text--l { width: var(--vf-col); }
+/* L (vf--light): края колонок — как в опубликованной версии, 84 px от края при 1440, и не дальше поля .wrap (48 px)
+   при 1280; фото почти не уменьшается (650 вместо 660). M и N (плашки с подложкой) — как были */
+html[data-skin="gallery"] .vf--light .vf__stage { --vf-col: 304px; --edge: max(48px, calc(50vw - 636px)); }
+html[data-skin="gallery"] .vf__role { margin-top: 18px; font-size: 17.5px; line-height: 1.45; }
+html[data-skin="gallery"] .vf__cities { margin-top: 18px; }
+html[data-skin="gallery"] .vf__cities span { height: 34px; padding: 0 13px; font-size: 14px; line-height: 34px; }
+html[data-skin="gallery"] .vf__q { font: 500 italic 22px/1.36 var(--serif); text-wrap: pretty; }
+html[data-skin="gallery"] .vf__sub { margin-top: 24px; font-size: 13px; letter-spacing: 0.05em; }
+html[data-skin="gallery"] .does { margin-top: 8px; }
+html[data-skin="gallery"] .does li { grid-template-columns: 20px 1fr; column-gap: 12px; }
+html[data-skin="gallery"] .does li svg { width: 20px; height: 20px; margin-top: 1px; }
+html[data-skin="gallery"] .does li b { font-size: 16px; line-height: 1.35; }
+html[data-skin="gallery"] .does li > span { margin-top: 2px; font-size: 14px; line-height: 1.42; }
+html[data-skin="gallery"] .vf--light .does li { box-shadow: none; border-bottom: 1px solid var(--line); border-radius: 0; padding: 11px 2px; }
 html[data-skin="gallery"] .vf--light .does li:last-child { border-bottom: 0; }
 /* второй фон в «Галерее» — скруглённая пудровая подложка внутри страницы, а не заливка во всю ширину */
 html[data-skin="gallery"] .vf--soft { --vf-bg: var(--paper); }
@@ -653,25 +701,32 @@ html[data-skin="gallery"] .vf--soft .vf__stage::before {
   border-radius: var(--r-lg); background: var(--paper-2);
 }
 
-/* поиск: строка и подсказки — прямоугольные, выдача — в паспарту */
-html[data-skin="gallery"] .sbar { border-radius: var(--r-btn); box-shadow: 0 0 0 1px var(--line-2); font-weight: 400; }
-html[data-skin="gallery"] .qchip { padding: 0 10px; font-size: 11.5px; font-weight: 400; }
+/* поиск: строка и подсказки — в радиусе кнопок, выдача — в паспарту; подсказки и подписи крупнее (круг 3) */
+html[data-skin="gallery"] .sec.search { padding: 58px 0 44px; }
+html[data-skin="gallery"] .search .head { margin-bottom: 22px; }
+html[data-skin="gallery"] .sbar { width: 680px; height: 58px; border-radius: var(--r-btn); box-shadow: 0 0 0 1px var(--line-2); font-size: 18px; font-weight: 400; }
+html[data-skin="gallery"] .qchips { gap: 8px; margin-top: 16px; }
+html[data-skin="gallery"] .qchip { height: 40px; padding: 0 16px; font-size: 14.5px; font-weight: 400; }
 html[data-skin="gallery"] .res__pic { background: var(--white); box-shadow: var(--sh-1); }
 html[data-skin="gallery"] .res__in { inset: 10px; border-radius: 0; }
 html[data-skin="gallery"] .res__cap { margin-top: 14px; }
-html[data-skin="gallery"] .res__cap b { font: 500 italic 18px/1.2 var(--serif); }
-html[data-skin="gallery"] .res__cap span { margin-top: 3px; font-size: 12px; }
-html[data-skin="gallery"] .res__k { left: 20px; top: 20px; height: 24px; padding: 0 9px; font-size: 10px; line-height: 24px; letter-spacing: 0.1em; text-transform: uppercase; }
+html[data-skin="gallery"] .res__cap b { font: 500 italic 20px/1.2 var(--serif); }
+html[data-skin="gallery"] .res__cap span { margin-top: 3px; font-size: 14px; }
+html[data-skin="gallery"] .res__k { left: 20px; top: 20px; height: 28px; padding: 0 10px; font-size: 13px; line-height: 28px; letter-spacing: 0.05em; text-transform: uppercase; }
 
-/* финал: снимки веера — отпечатки в белом паспарту */
-html[data-skin="gallery"] .final { --fc-r: var(--r-btn); }
-html[data-skin="gallery"] .fc:not(.fc--c) { padding: 10px; background: var(--white); }
-html[data-skin="gallery"] .fc--c .fc__name { font: 500 italic 19px/1.15 var(--serif); }
-html[data-skin="gallery"] .fc__role { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
-html[data-skin="gallery"] .final__sub { font: 400 26px/1.3 var(--uni); }
-html[data-skin="gallery"] .nick__field { border-radius: var(--r-btn); font-size: 15px; box-shadow: 0 0 0 1px var(--line-2); }
-html[data-skin="gallery"] .nick__field input { font: 400 15px var(--ui); }
-html[data-skin="gallery"] .foot__love { font-weight: 400; }
+/* финал: снимки веера — скруглённые, без паспарту, с мягкой тенью (как в H) */
+html[data-skin="gallery"] .final { --fc-r: 18px; }
+html[data-skin="gallery"] .fc { background: var(--paper-3); }
+html[data-skin="gallery"] .fc--c { background: var(--white); }
+html[data-skin="gallery"] .fc--c .fc__name { font: 500 italic 21px/1.15 var(--serif); }
+html[data-skin="gallery"] .fc__role { margin-top: 2px; font-size: 14px; line-height: 1.3; }
+html[data-skin="gallery"] .url-chip { font-size: 15px; }
+html[data-skin="gallery"] .final__sub { font: 400 27px/1.3 var(--uni); }
+html[data-skin="gallery"] .nick__field { border-radius: var(--r-btn); font-size: 16.5px; box-shadow: 0 0 0 1px var(--line-2); }
+html[data-skin="gallery"] .nick__field input { font: 400 16.5px var(--ui); }
+html[data-skin="gallery"] .foot__love { font-size: 15.5px; font-weight: 400; }
+html[data-skin="gallery"] .foot__nav { gap: 20px; font-size: 15px; }
+html[data-skin="gallery"] .foot__c { font-size: 14px; }
 
 /* ── Меньше движения: всё сразу в финальном состоянии ────────── */
 @media (prefers-reduced-motion: reduce) {
@@ -684,6 +739,7 @@ html[data-skin="gallery"] .foot__love { font-weight: 400; }
   html.js .fan:not(.is-ready) .fc, html.js .fan:not(.is-ready) .url-chip { opacity: 1; }
   .final__heart .line { stroke-dashoffset: 0 !important; }
   .final__heart .fill { opacity: 1 !important; }
+  html.js .final__ln { opacity: 1; transform: none; }
 }
 
 
@@ -1084,16 +1140,54 @@ html.js .caps .caps__pin.caps__a { transform: scale(0.4); }
 
 /* ── «Галерея»: прямоугольные вкладки капсом, имена курсивом Cormorant, фото в белом паспарту ── */
 html[data-skin="gallery"] .caps .caps__bar { padding: 4px; }
-html[data-skin="gallery"] .caps .caps__tab { height: 38px; padding: 0 18px; font-size: 12px; letter-spacing: var(--btn-track); text-transform: var(--btn-case); }
-html[data-skin="gallery"] .caps .caps__nm { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 16px; letter-spacing: 0; }
-html[data-skin="gallery"] .caps .caps__tk-h .caps__nm { font-size: 15px; color: var(--ink); }
-html[data-skin="gallery"] .caps .caps__k { letter-spacing: 0.08em; text-transform: uppercase; font-size: 10.5px; }
-html[data-skin="gallery"] .caps .caps__pill, html[data-skin="gallery"] .caps .caps__mos-l { letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; }
+html[data-skin="gallery"] .caps .caps__tab { height: 40px; padding: 0 19px; font-size: 13px; letter-spacing: 0.05em; text-transform: var(--btn-case); }
+html[data-skin="gallery"] .caps .caps__nm { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 17px; letter-spacing: 0; }
+html[data-skin="gallery"] .caps .caps__tk-h .caps__nm { font-size: 17px; color: var(--ink); }
+html[data-skin="gallery"] .caps .caps__k { letter-spacing: 0.05em; text-transform: uppercase; font-size: 13px; line-height: 18px; }
+html[data-skin="gallery"] .caps .caps__pill { height: 28px; letter-spacing: 0.05em; text-transform: uppercase; font-size: 13px; line-height: 28px; }
 html[data-skin="gallery"] .caps .caps__lc, html[data-skin="gallery"] .caps .caps__prod, html[data-skin="gallery"] .caps .caps__sheet, html[data-skin="gallery"] .caps .caps__slot { border-radius: 4px; }
 html[data-skin="gallery"] .caps .caps__net b, html[data-skin="gallery"] .caps .caps__price b, html[data-skin="gallery"] .caps .caps__slot-p { font-size: 24px; }
 html[data-skin="gallery"] .caps .caps__tk-d b { font-size: 44px; }
 html[data-skin="gallery"] .caps .caps__prod-t, html[data-skin="gallery"] .caps .caps__slot-t { font-size: 22px; letter-spacing: 0; }
 html[data-skin="gallery"] .caps .caps__notes b { background: var(--accent); }
+
+/* шкала шрифтов «Галереи» (круг 3): названия карточек 16 px, подписи и мета — 14 px, служебные — от 13 px.
+   Чтобы блок остался в один экран, поля панели и сцены чуть ужаты. */
+html[data-skin="gallery"] .caps { padding: 14px 0; }
+html[data-skin="gallery"] .caps .caps__bg { padding: 42px 0 38px; }
+html[data-skin="gallery"] .caps .caps__tabs { margin-top: 24px; }
+html[data-skin="gallery"] .caps .caps__panels { margin-top: 18px; }
+/* колонка текста чуть уже — карточкам с крупным шрифтом достаётся больше места */
+html[data-skin="gallery"] .caps .caps__panel { grid-template-columns: minmax(0, 1fr) 330px; gap: 36px; padding: 18px 22px; }
+html[data-skin="gallery"] .caps .caps__txt { padding-right: 8px; }
+html[data-skin="gallery"] .caps .caps__stage { padding: 12px 8px 12px 10px; }
+html[data-skin="gallery"] .caps .caps__go { font-size: 15.5px; }
+html[data-skin="gallery"] .caps .caps__t { font-size: 16px; }
+html[data-skin="gallery"] .caps .caps__m { font-size: 14px; }
+/* первая карточка (Анастасия: «фотограф · Ростов-на-Дону» и «2 дня · группа до 15 человек») шире — подписи 14 px в одну строку и на 1280 */
+html[data-skin="gallery"] .caps .caps__shelf { grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr) minmax(0, 1fr); }
+html[data-skin="gallery"] .caps .caps__who { gap: 8px; }
+html[data-skin="gallery"] .caps .caps__who .caps__ava { width: 26px; height: 26px; }
+html[data-skin="gallery"] .caps .caps__who span { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__mos-l { height: 24px; padding: 0 9px; font-size: 13px; line-height: 24px; letter-spacing: 0; }
+/* тарифы 14 px: колонки по длине названия — «С разбором заданий» в одну строку и на 1280 */
+html[data-skin="gallery"] .caps .caps__tar { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) minmax(0, 1fr); }
+html[data-skin="gallery"] .caps .caps__tar button { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__tar button b { font-size: 15px; }
+html[data-skin="gallery"] .caps .caps__prog li { padding: 6px 0; font-size: 14.5px; }
+html[data-skin="gallery"] .caps .caps__prog small { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__net { font-size: 14.5px; }
+html[data-skin="gallery"] .caps .caps__net span { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__tk-d { font-size: 13px; }
+html[data-skin="gallery"] .caps .caps__tk-t { font-size: 16px; }
+html[data-skin="gallery"] .caps .caps__tk-h { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__pin { width: 24px; height: 24px; margin: -12px 0 0 -12px; font-size: 13px; }
+html[data-skin="gallery"] .caps .caps__thumb .caps__pin { width: 22px; height: 22px; margin: -11px 0 0 -11px; font-size: 13px; }
+html[data-skin="gallery"] .caps .caps__notes li { grid-template-columns: 20px minmax(0, 1fr); gap: 8px; font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__notes b { width: 20px; height: 20px; font-size: 13px; }
+html[data-skin="gallery"] .caps .caps__price { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__slot-l { font-size: 14px; }
+html[data-skin="gallery"] .caps .caps__slots button { height: 38px; font-size: 14px; }
 
 @media (prefers-reduced-motion: reduce) {
   html.js .caps .caps__a, html.js .caps .caps__pin.caps__a { opacity: 1; transform: none; }
@@ -1207,6 +1301,16 @@ html.js .live .cal.is-open .cd:nth-child(n + 6), html.js .live .cal.is-open .cwd
 .live .hmd.today.has { box-shadow: 0 0 0 2px var(--white), 0 0 0 3.5px var(--ink); }
 .live button.hmd.has:hover { background: var(--paper-2); }
 .live .hmd.hid { visibility: hidden; }
+/* панель эфира открыта (её закрывает только крестик) — шесть месяцев сеткой 3 × 2 слева от неё, в высоту месяца */
+.live .chalf { transition: margin-right 0.5s var(--ease-out); }
+/* пока панель открыта, высота тела календаря одна во всех видах — панель не «прыгает» при смене вида */
+html.js .live .cal.is-open .cal__body { min-height: var(--cg); }
+html.js .live .cal.is-open .chalf { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 10px; margin-right: calc(var(--epn) + 16px); }
+html.js .live .cal.is-open .hmo { padding: 8px 12px 8px; }
+html.js .live .cal.is-open .hmo__t { margin-bottom: 4px; }
+html.js .live .cal.is-open .hmo__g { gap: 1px 0; }
+html.js .live .cal.is-open .hmd { width: 22px; height: 22px; }
+html.js .live .cal.is-open .hmd.hd { height: 18px; }
 
 /* список: не выше сетки месяца; открытая панель сдвигает его влево */
 .live .clist { display: grid; gap: 14px; max-height: var(--cg); overflow: auto; padding: 2px 8px 2px 2px; transition: margin-right 0.5s var(--ease-out); }
@@ -1243,7 +1347,7 @@ html:not(.js) .live .epn { position: static; width: auto; margin-top: 16px; tran
 .live .epn__kick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; flex: 1; min-width: 0; font-size: 12.5px; font-weight: 500; color: var(--ink-3); }
 .live .epn__tag { height: 24px; padding: 0 9px; border-radius: var(--r-btn); background: var(--ink); color: #fff; line-height: 24px; }
 .live .epn__x { flex: none; }
-.live .epn__b { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: auto; padding: 14px 20px 14px; }
+.live .epn__b { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: auto; padding: 12px 20px; }
 .live .epn__h { font-family: var(--uni); font-weight: var(--h-weight); font-size: 22px; line-height: 1.25; letter-spacing: -0.02em; color: var(--ink); }
 .live .epn__rows { display: grid; margin: 12px 0 12px; }
 .live .epn__rows > div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); }
@@ -1271,17 +1375,49 @@ html:not(.js) .live .epn { position: static; width: auto; margin-top: 16px; tran
 /* ── «Галерея»: Forum в заголовках месяца и панели, прямоугольные кнопки, пудровые чипы ── */
 html[data-skin="gallery"] .live .cal__m { font: 400 23px/26px var(--uni); letter-spacing: 0; }
 html[data-skin="gallery"] .live .epn__h { font-size: 24px; line-height: 1.18; letter-spacing: 0; }
-html[data-skin="gallery"] .live .cal { --cg: 424px; }
-html[data-skin="gallery"] .live .live__head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-html[data-skin="gallery"] .live .live__head .lead { font-size: 16.5px; }
+html[data-skin="gallery"] .live .cal { --cg: 440px; }
+/* лид крупнее (18,5 px) — колонка лида шире, чтобы он оставался в две строки */
+html[data-skin="gallery"] .live .live__head { grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); gap: 24px 32px; }
+html[data-skin="gallery"] .live .live__head .lead { font-size: var(--fs-lead); }
 html[data-skin="gallery"] .live .live__ib { border-radius: var(--r-sm); }
-html[data-skin="gallery"] .live .live__ddb, html[data-skin="gallery"] .live .live__seg button, html[data-skin="gallery"] .live .epn__ghost { font-size: 11.5px; letter-spacing: var(--btn-track); text-transform: var(--btn-case); }
-html[data-skin="gallery"] .live .live__ddb { box-shadow: inset 0 0 0 1px var(--line-2); }
+/* шкала шрифтов «Галереи» (круг 3): переключатели и капс — 13 px с разрядкой 0,05em, подписи и мета — от 14 px, чипы календаря — 12,5 px */
+html[data-skin="gallery"] .live .cal { --epn: 340px; }
+html[data-skin="gallery"] .live .live__ddb, html[data-skin="gallery"] .live .live__seg button, html[data-skin="gallery"] .live .epn__ghost, html[data-skin="gallery"] .live .epn__f .btn { font-size: 13px; letter-spacing: 0.05em; text-transform: var(--btn-case); }
+html[data-skin="gallery"] .live .live__ddb { height: 40px; padding: 0 12px 0 15px; box-shadow: inset 0 0 0 1px var(--line-2); }
+html[data-skin="gallery"] .live .live__seg button { height: 34px; padding: 0 14px; }
 html[data-skin="gallery"] .live .live__seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-html[data-skin="gallery"] .live .epn__ghost { box-shadow: inset 0 0 0 1px var(--ink); }
-html[data-skin="gallery"] .live .epn__tag { height: 22px; line-height: 22px; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
-html[data-skin="gallery"] .live .cwd { font-size: 10.5px; letter-spacing: 0.1em; }
-html[data-skin="gallery"] .live .epn__host b { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 17px; }
+html[data-skin="gallery"] .live .live__mine { font-size: 15px; }
+html[data-skin="gallery"] .live .cal__reset { font-size: 14px; }
+html[data-skin="gallery"] .live .live__ddl button { font-size: 14.5px; }
+html[data-skin="gallery"] .live .epn__ghost { padding: 0 12px; box-shadow: inset 0 0 0 1px var(--ink); }
+html[data-skin="gallery"] .live .epn__f .btn { padding: 0 12px; }
+html[data-skin="gallery"] .live .epn__tag { height: 24px; padding: 0 9px; line-height: 24px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+html[data-skin="gallery"] .live .epn__kick { font-size: 14px; }
+html[data-skin="gallery"] .live .epn__b { padding: 12px 20px; }
+html[data-skin="gallery"] .live .epn__rows { margin: 10px 0; }
+html[data-skin="gallery"] .live .epn__rows > div { grid-template-columns: 80px minmax(0, 1fr); padding: 7px 0; }
+html[data-skin="gallery"] .live .epn__rows dt { font-size: 14px; }
+html[data-skin="gallery"] .live .epn__rows dd { font-size: 15px; }
+html[data-skin="gallery"] .live .epn__rows dd span { font-size: 14px; }
+html[data-skin="gallery"] .live .epn__host span { font-size: 14px; }
+html[data-skin="gallery"] .live .epn__note { font-size: 13.5px; }
+html[data-skin="gallery"] .live .cwd { padding: 7px 10px; font-size: 13px; letter-spacing: 0.05em; }
+html[data-skin="gallery"] .live .cd { padding-left: 35px; }
+html[data-skin="gallery"] .live .cd__n { left: 5px; top: 5px; width: 26px; height: 26px; font-size: 13.5px; }
+html[data-skin="gallery"] .live .cch { font-size: 12.5px; line-height: 16px; }
+/* шрифт чипов крупнее — название до четырёх строк (в месяце из шести недель — до трёх), высота месяца та же */
+html[data-skin="gallery"] .live .cch__x { -webkit-line-clamp: 4; line-clamp: 4; }
+html[data-skin="gallery"] .live .cgrid--6 .cch__x { -webkit-line-clamp: 3; line-clamp: 3; }
+html[data-skin="gallery"] .live .cd.multi .cch__x { -webkit-line-clamp: 1; line-clamp: 1; }
+html[data-skin="gallery"] .live .hmo__t { font-size: 15.5px; }
+html[data-skin="gallery"] .live .hmo__t small { font-size: 13.5px; }
+html[data-skin="gallery"] .live .hmd { font-size: 13px; }
+html[data-skin="gallery"] .live .hmd.hd { font-size: 13px; letter-spacing: 0.03em; }
+html[data-skin="gallery"] .live .clist__dt { font-size: 14px; }
+html[data-skin="gallery"] .live .cer__t, html[data-skin="gallery"] .live .cer__n { font-size: 15.5px; }
+html[data-skin="gallery"] .live .cer__k { font-size: 14px; }
+html[data-skin="gallery"] .live .cal__empty { font-size: 15px; }
+html[data-skin="gallery"] .live .epn__host b { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 19px; }
 html[data-skin="gallery"] .live .cch { border-radius: 3px; }
 html[data-skin="gallery"] .live .cch.is-sel { background: var(--ink); }
 
@@ -1295,7 +1431,7 @@ html[data-skin="gallery"] .live .cch.is-sel { background: var(--ink); }
 
 /* высота блока ≤ 620 px на 1440 (§0: калькулятор заметно меньше экрана) */
 .calc { padding: 56px 0 40px; background: var(--paper); }
-.calc .calc__box { display: grid; grid-template-columns: minmax(0, 1fr) 312px; gap: 72px; align-items: center; width: min(960px, 100%); margin: 26px auto 0; }
+.calc .calc__box { display: grid; grid-template-columns: minmax(0, 1fr) 344px; gap: 64px; align-items: center; width: min(1000px, 100%); margin: 26px auto 0; }
 
 /* формат: сегменты */
 .calc .calc__seg { display: inline-flex; gap: 2px; padding: 4px; border-radius: var(--r-btn); background: var(--paper-2); }
@@ -1303,7 +1439,8 @@ html[data-skin="gallery"] .live .cch.is-sel { background: var(--ink); }
 .calc .calc__seg button:hover { color: var(--ink); }
 .calc .calc__seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 
-.calc .calc__big { margin-top: 22px; font-family: var(--serif); font-weight: var(--h-weight); font-size: 50px; line-height: 1; letter-spacing: -0.035em; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink); }
+/* крупная сумма — шрифтом цифр EventMatch (Unbounded 300) в обоих оформлениях: токен --num из tokens.css */
+.calc .calc__big { margin-top: 22px; font-family: var(--num, "Unbounded", "Onest", sans-serif); font-weight: 300; font-size: 50px; line-height: 1; letter-spacing: -0.035em; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink); }
 .calc .calc__big small { display: inline-block; margin-left: 12px; font: 400 14.5px/1.3 var(--ui); letter-spacing: 0; color: var(--ink-3); vertical-align: 0.2em; }
 .calc .calc__line { margin-top: 9px; font-size: 15px; color: var(--ink-2); }
 .calc .calc__line span { color: var(--ink); font-weight: 500; }
@@ -1324,13 +1461,13 @@ html[data-skin="gallery"] .live .cch.is-sel { background: var(--ink); }
 .calc .calc__money li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
 .calc .calc__money b { font-weight: 500; color: var(--ink); white-space: nowrap; }
 
-/* справа: обложка продукта и чек поверх её нижнего края (лица — в верхней части кадра) */
-.calc .calc__pay { position: relative; width: 312px; padding-bottom: 92px; }
-.calc .calc__pic { position: relative; aspect-ratio: 312 / 300; overflow: hidden; border-radius: var(--r-lg); background: var(--paper-2); box-shadow: var(--sh-2); }
+/* справа: обложка продукта и чек поверх её нижнего края (лица — в верхней части кадра); фото крупнее, чем в круге 2 */
+.calc .calc__pay { position: relative; width: 344px; padding-bottom: 84px; }
+.calc .calc__pic { position: relative; aspect-ratio: 344 / 372; overflow: hidden; border-radius: var(--r-lg); background: var(--paper-2); box-shadow: var(--sh-2); }
 .calc .calc__pic img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease-out; }
 .calc .calc__pic img.is-swapping { opacity: 0; }
 .calc .calc__badge { position: absolute; left: 12px; top: 12px; height: 28px; padding: 0 11px; border-radius: var(--r-btn); background: rgba(255, 255, 255, 0.94); font-size: 12.5px; font-weight: 500; line-height: 28px; color: var(--ink); }
-.calc .calc__chk { position: absolute; left: -32px; right: 32px; bottom: 0; padding: 16px 18px 18px; border-radius: var(--r-md); background: var(--white); box-shadow: var(--sh-3), 0 0 0 1px var(--line); }
+.calc .calc__chk { position: absolute; left: -32px; right: 40px; bottom: 0; padding: 16px 18px 18px; border-radius: var(--r-md); background: var(--white); box-shadow: var(--sh-3), 0 0 0 1px var(--line); }
 .calc .calc__t { font-size: 14.5px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; min-height: 38px; color: var(--ink); }
 .calc .calc__m { margin-top: 2px; font-size: 12.5px; color: var(--ink-3); }
 .calc .calc__rows { display: grid; gap: 6px; margin-top: 12px; }
@@ -1342,11 +1479,20 @@ html[data-skin="gallery"] .live .cch.is-sel { background: var(--ink); }
 
 /* ── «Галерея»: прямоугольные сегменты капсом, Cormorant в сумме, фото в белом паспарту ── */
 html[data-skin="gallery"] .calc .calc__seg { background: transparent; box-shadow: inset 0 0 0 1px var(--line-2); }
-html[data-skin="gallery"] .calc .calc__seg button { height: 32px; font-size: 11.5px; letter-spacing: var(--btn-track); text-transform: var(--btn-case); }
-html[data-skin="gallery"] .calc .calc__big { font-size: 60px; letter-spacing: -0.01em; }
+html[data-skin="gallery"] .calc .calc__seg button { height: 36px; padding: 0 15px; font-size: 13px; letter-spacing: 0.05em; text-transform: var(--btn-case); }
 html[data-skin="gallery"] .calc .calc__pic { padding: 10px; background: #fff; border-radius: 2px; box-shadow: var(--sh-2); }
 html[data-skin="gallery"] .calc .calc__pic img { border-radius: 1px; }
-html[data-skin="gallery"] .calc .calc__badge { left: 20px; top: 20px; height: 24px; line-height: 24px; border-radius: 2px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+html[data-skin="gallery"] .calc .calc__badge { left: 20px; top: 20px; height: 28px; line-height: 28px; border-radius: var(--r-btn); font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+/* шкала шрифтов «Галереи» (круг 3): подписи и мета — от 14 px */
+html[data-skin="gallery"] .calc .calc__big small { font-size: 15px; }
+html[data-skin="gallery"] .calc .calc__line { font-size: 15.5px; }
+html[data-skin="gallery"] .calc .calc__rtop { font-size: 15px; }
+html[data-skin="gallery"] .calc .calc__free { font-size: 15px; }
+html[data-skin="gallery"] .calc .calc__money { font-size: 14.5px; }
+html[data-skin="gallery"] .calc .calc__t { font-size: 15.5px; min-height: 40px; }
+html[data-skin="gallery"] .calc .calc__m { font-size: 14px; }
+html[data-skin="gallery"] .calc .calc__rows > div { font-size: 14.5px; }
+html[data-skin="gallery"] .calc .calc__total { font-size: 15.5px !important; }
 html[data-skin="gallery"] .calc .calc__chk { border-radius: 4px; }
 html[data-skin="gallery"] .calc .calc__range input::-webkit-slider-thumb { border-color: var(--ink); }
 
@@ -1380,6 +1526,10 @@ html[data-skin="gallery"] .calc .calc__range input::-webkit-slider-thumb { borde
 
 /* «Галерея»: тень мягче и теплее */
 html[data-skin="gallery"] .fair .fair__b { box-shadow: 0 14px 28px -16px rgba(60, 40, 30, 0.4); }
+/* на 1280 колонка текста шире на 40 px (пузыри 480, зазор 36) — подзаголовок в 3 строки, как на 1440 и 1920 */
+@media (max-width: 1300px) {
+  html[data-skin="gallery"] .fair .fair__grid { grid-template-columns: minmax(0, 1fr) 480px; gap: 36px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .fair .fair__b { animation: none; }

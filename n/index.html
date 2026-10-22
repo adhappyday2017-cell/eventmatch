@@ -9,7 +9,7 @@
 <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/unbounded-300-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/onest-400-700.woff2" as="font" type="font/woff2" crossorigin>
-<script>(function(){var s="em";try{var q=new URLSearchParams(location.search).get("skin");s=q||localStorage.getItem("em-skin")||"em";}catch(e){}document.documentElement.dataset.skin=(s==="gallery"?"gallery":"em");})();</script>
+<script>(function(){var s="em",b="soft";try{var q=new URLSearchParams(location.search);s=q.get("skin")||localStorage.getItem("em-skin")||"em";b=q.get("btn")||localStorage.getItem("em-btn")||"soft";}catch(e){}var d=document.documentElement.dataset;d.skin=(s==="gallery"?"gallery":"em");d.btn=(b==="pill"?"pill":"soft");})();</script>
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -60,29 +60,30 @@
 </section>
 
 <!-- Стена: 9 карточек, видно 7; при прокрутке трек мягко догоняет прокрутку (rAF + lerp) и показывает ещё две.
-     Хвостовые карточки (--a — с какой доли пути начинают проявляться) до прокрутки не видны совсем, без заглушек. -->
+     Хвостовые карточки (--a — с какой доли пути начинают проявляться) до прокрутки не видны совсем, без заглушек.
+     Подпись — роль и город двумя строками (без «·», чтобы точка не повисала при переносе); без паспарту — при наведении. -->
 <section class="wall" aria-label="Работы исполнителей">
   <div class="wall__stage">
     <div class="cc-track" id="cc-track">
       <figure class="cc" data-rv style="--x:0;--y:68;--w:268;--ar:3/2;--z:1">
         <div class="cc__in">
-          <div class="cc__pic"><img class="cc__f" src="img/t/c-video.webp" alt="Видеограф снимает с плеча на камеру" decoding="async"></div>
-          <figcaption class="cc__cap"><span>Видеограф · Краснодар</span></figcaption>
+          <div class="cc__pic"><img class="cc__f" src="img/w/fs-lesha-2-600.webp" alt="Двое выглядывают из-за дивана, между ними плёночный фотоаппарат" decoding="async" style="object-position: 52% 14%"></div>
+          <figcaption class="cc__cap"><span class="cc__role">Фотограф</span> <span class="cc__city">Краснодар</span></figcaption>
         </div>
       </figure>
       <figure class="cc cc--mat" data-rv style="--x:214;--y:154;--w:212;--ar:1/1;--z:3">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/w/ww-hair-02-600.webp" alt="Стилист закалывает гладкий пучок" decoding="async" style="object-position: 50% 0%"></div>
-          <figcaption class="cc__cap"><span>Стилист по&nbsp;волосам · Пермь</span></figcaption>
+          <figcaption class="cc__cap"><span class="cc__role">Стилист по&nbsp;волосам</span><span class="cc__city">Ростов‑на‑Дону</span></figcaption>
         </div>
       </figure>
       <figure class="cc" data-rv style="--x:452;--y:0;--w:200;--ar:4/5;--z:1">
         <div class="cc__in">
-          <div class="cc__pic"><img class="cc__f" src="img/w/ww-host-02-600.webp" alt="Ведущий с микрофоном среди гостей вечеринки" decoding="async" style="object-position: 50% 0%"></div>
-          <figcaption class="cc__cap"><span>Ведущий · Казань</span></figcaption>
+          <div class="cc__pic"><img class="cc__f" src="img/w/fs-lesha-1-600.webp" alt="Ведущий с гостьей на церемонии свадебной премии" decoding="async" style="object-position: 54% 36%"></div>
+          <figcaption class="cc__cap"><span class="cc__role">Ведущий</span> <span class="cc__city">Москва</span></figcaption>
         </div>
       </figure>
-      <figure class="cc cc--mat cc--ag" data-rv style="--x:616;--y:44;--w:248;--ar:4/5;--z:3">
+      <figure class="cc cc--mat cc--ag" data-rv style="--x:613;--y:44;--w:254;--ar:4/5;--z:3">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/w/ag-060-600.webp" alt="Невеста в кружевных перчатках — работа Анастасии Агаповой" decoding="async"></div>
           <figcaption class="cc__cap"><img class="cc__ava" src="img/t/nastya-96.webp" width="26" height="26" alt=""><span class="cc__who"><b>Анастасия Агапова</b><span>фотограф · Ростов‑на‑Дону</span></span></figcaption>
@@ -90,32 +91,32 @@
       </figure>
       <figure class="cc" data-rv style="--x:832;--y:0;--w:180;--ar:3/4;--z:1">
         <div class="cc__in">
-          <div class="cc__pic"><img class="cc__f" src="img/w/ww-event-02-600.webp" alt="Молодожёны выходят с церемонии под лепестки" decoding="async" style="object-position: 50% 0%"></div>
-          <figcaption class="cc__cap"><span>Организатор · Сочи</span></figcaption>
+          <div class="cc__pic"><img class="cc__f" src="img/w/fs-nastya-12-600.webp" alt="Девушка в чёрном платье сидит на полу, чёрно-белый кадр" decoding="async" style="object-position: 53% 16%"></div>
+          <figcaption class="cc__cap"><span class="cc__role">Фотограф</span> <span class="cc__city">Москва</span></figcaption>
         </div>
       </figure>
       <figure class="cc cc--mat" data-rv style="--x:968;--y:104;--w:214;--ar:4/5;--z:3">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/w/ag-072-600.webp" alt="Портрет девушки с длинными тёмными волосами" decoding="async" style="object-position: 50% 0%"></div>
-          <figcaption class="cc__cap"><span>Модель · Санкт‑Петербург</span></figcaption>
+          <figcaption class="cc__cap"><span class="cc__role">Модель</span><span class="cc__city">Краснодар</span></figcaption>
         </div>
       </figure>
       <figure class="cc" data-rv style="--x:1108;--y:0;--w:236;--ar:4/3;--z:1">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/w/ww-decor-04-600.webp" alt="Декор банкета: розовые абажуры, цветы и свечи" decoding="async" style="object-position: 0% 50%"></div>
-          <figcaption class="cc__cap"><span>Декоратор · Москва</span></figcaption>
+          <figcaption class="cc__cap"><span class="cc__role">Декоратор</span> <span class="cc__city">Москва</span></figcaption>
         </div>
       </figure>
       <figure class="cc cc--tail" style="--x:56;--y:196;--w:250;--ar:3/2;--z:2;--a:0">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/t/c-reels.webp" alt="Reels-мейкер снимает на камеру со стабилизатором" decoding="async"></div>
-          <figcaption class="cc__cap"><span>Reels-мейкер · Ростов‑на‑Дону</span></figcaption>
+          <figcaption class="cc__cap"><span class="cc__role">Reels-мейкер</span> <span class="cc__city">Ростов‑на‑Дону</span></figcaption>
         </div>
       </figure>
       <figure class="cc cc--mat cc--tail" style="--x:250;--y:8;--w:214;--ar:4/5;--z:3;--a:0.3">
         <div class="cc__in">
           <div class="cc__pic"><img class="cc__f" src="img/w/ww-mua-bp4-600.webp" alt="Вечерний макияж: сияющая кожа и пушистые ресницы" decoding="async" style="object-position: 48% 0%"></div>
-          <figcaption class="cc__cap"><span>Визажист · Москва</span></figcaption>
+          <figcaption class="cc__cap"><span class="cc__role">Визажист</span><span class="cc__city">Москва</span></figcaption>
         </div>
       </figure>
     </div>
@@ -353,7 +354,7 @@
 
 <div class="chap"><p class="chap__in"><span class="chap__n">2</span><span class="chap__t">Поиск и&nbsp;обучение</span></p></div>
 
-<!-- 5. Умный поиск: четыре подсказки — три про коллег, одна про обучение; по три карточки на запрос -->
+<!-- 5. Умный поиск: три подсказки — две про коллег, одна про обучение; по три карточки на запрос -->
 <section class="sec search" id="poisk" aria-labelledby="search-title">
   <div class="wrap">
     <div class="head head--c">
@@ -367,15 +368,14 @@
     </div>
     <div class="qchips" id="qchips" role="group" aria-label="Подсказки запросов" data-rv>
       <button class="qchip" type="button" aria-pressed="true">второй фотограф или видеограф на&nbsp;субботу</button>
-      <button class="qchip" type="button" aria-pressed="false">reels-мейкер на&nbsp;съёмку мастер-класса</button>
       <button class="qchip" type="button" aria-pressed="false">модель на&nbsp;мастер-класс, рыжая с&nbsp;веснушками</button>
       <button class="qchip" type="button" aria-pressed="false">курс по&nbsp;свету для&nbsp;свадебного фотографа</button>
     </div>
 
     <ul class="res" id="res" aria-label="Результаты умного поиска" aria-live="polite" data-rv>
-      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/r/ag-013-560.webp" alt="Фотограф" loading="lazy" decoding="async" style="object-position: 50% 0%"></div></div><p class="res__cap"><b>Фотограф</b><span>Ростов‑на‑Дону</span></p></li>
-      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/t/f-r-video2-400.webp" alt="Видеограф" loading="lazy" decoding="async"></div></div><p class="res__cap"><b>Видеограф</b><span>Санкт‑Петербург</span></p></li>
-      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/r/ag-043-560.webp" alt="Фотограф" loading="lazy" decoding="async" style="object-position: 50% 0%"></div></div><p class="res__cap"><b>Фотограф</b><span>Москва</span></p></li>
+      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/r/ag-036-560.webp" alt="Фотограф" loading="lazy" decoding="async" style="object-position: 50% 31%"></div></div><p class="res__cap"><b>Фотограф</b><span>Ростов‑на‑Дону</span></p></li>
+      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/r/ag-037-560.webp" alt="Видеограф" loading="lazy" decoding="async" style="object-position: 50% 30%"></div></div><p class="res__cap"><b>Видеограф</b><span>Краснодар</span></p></li>
+      <li class="res__i"><div class="res__pic"><div class="res__in"><img class="res__f" src="img/r/ag-025-560.webp" alt="Фотограф" loading="lazy" decoding="async" style="object-position: 50% 0%"></div></div><p class="res__cap"><b>Фотограф</b><span>Москва</span></p></li>
     </ul>
   </div>
 </section>
@@ -442,7 +442,7 @@
                   <p class="caps__m">5&nbsp;недель · онлайн</p>
                 </article>
                 <article class="caps__lc caps__a" style="--i:2">
-                  <p class="caps__who"><i class="caps__ava caps__ava--i"><svg width="16" height="16" aria-hidden="true"><use href="#vz-i-brush"/></svg></i><span><b class="caps__nm">Визажист</b>Санкт‑Петербург</span></p>
+                  <p class="caps__who"><i class="caps__ava caps__ava--i"><svg width="16" height="16" aria-hidden="true"><use href="#vz-i-brush"/></svg></i><span><b class="caps__nm">Визажист</b>Москва</span></p>
                   <div class="caps__mos">
                     <img class="caps__m1" src="img/vozmozhnosti/ww-mua-bp4-520.webp" width="390" height="520" alt="Портрет невесты: макияж и укладка" loading="lazy" decoding="async" style="object-position:48% 30%">
                     <img src="img/vozmozhnosti/ww-mua-bp2-520.webp" width="331" height="520" alt="" loading="lazy" decoding="async" style="object-position:50% 43%">
@@ -694,7 +694,7 @@
       </div>
       <div class="calc__r">
         <article class="calc__pay">
-          <div class="calc__pic"><img data-calc-cover src="img/dohod/ag-051-900.webp" width="600" height="900" alt="" loading="lazy" decoding="async" style="object-position:55% 25%"><span class="calc__badge" data-calc-badge>Курс</span></div>
+          <div class="calc__pic"><img data-calc-cover src="img/fs/fs-nastya-1.webp" width="1050" height="1400" alt="" loading="lazy" decoding="async" style="object-position:60% 17%"><span class="calc__badge" data-calc-badge>Курс</span></div>
           <div class="calc__chk">
             <p class="calc__t" data-calc-title>Свадебная съёмка: 8&nbsp;недель с&nbsp;обратной связью</p>
             <p class="calc__m">Твоё имя · фотограф</p>
@@ -716,7 +716,7 @@
   <div class="wrap fair__grid">
     <div class="fair__txt">
       <h2 class="h2" id="rt-title" data-rv>Чем лучше работаешь&nbsp;— <br>тем больше заработаешь</h2>
-      <p class="lead" data-rv>За&nbsp;продвижение платить не&nbsp;нужно: место в&nbsp;выдаче не&nbsp;продаётся. Чем выше рейтинг, тем больше охватов&nbsp;— на&nbsp;главную попадают бесплатно. Отзывы только от&nbsp;купивших, поэтому тебе верят.</p>
+      <p class="lead" data-rv>За&nbsp;продвижение платить не&nbsp;нужно: место в&nbsp;выдаче не&nbsp;продаётся. Чем&nbsp;выше рейтинг, тем&nbsp;больше охватов&nbsp;— на&nbsp;главную попадают бесплатно. Отзывы только от&nbsp;купивших, поэтому тебе верят.</p>
     </div>
     <!-- кружки: центр — Анастасия Агапова (её портрет), вокруг — работы и коллеги разных профессий; кадр подобран так, чтобы лицо было в круге -->
     <div class="fair__bubbles" aria-hidden="true">
@@ -807,32 +807,32 @@
 <!-- 11. Финал: веер визиток и ник -->
 <section class="sec final" id="final" aria-labelledby="final-title">
   <div class="wrap final__in">
-    <h2 class="h2 final__h" id="final-title" data-rv>Создано исполнителем&nbsp;— <br><span class="final__love">с&nbsp;любовью<svg class="final__heart" id="final-heart" viewBox="0 0 108 100" aria-hidden="true"><path class="fill" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/><path class="line" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z" pathLength="1"/></svg></span></h2>
+    <h2 class="h2 final__h" id="final-title"><span class="final__ln">Создано исполнителем&nbsp;—</span> <br><span class="final__ln final__love">с&nbsp;любовью<svg class="final__heart" id="final-heart" viewBox="0 0 108 100" aria-hidden="true"><path class="fill" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z"/><path class="line" transform="translate(-6 -4)" d="M60 104C55 99 6 69 6 33 6 16 19 4 34 4c11 0 20 6 26 16C66 10 75 4 86 4c15 0 28 12 28 29 0 36-49 66-54 71z" pathLength="1"/></svg></span></h2>
 
     <div class="fan" id="fan" aria-label="Визитка исполнителя и работы">
       <div class="fan__tilt" id="fan-tilt">
-        <!-- фото — из img/ag (focal.json): кадр прижат к верху, чтобы макушки и украшения не резались -->
-        <figure class="fc fc--far-l"><img src="img/t/fan-ag-056.webp" width="560" height="838" alt="Портрет с жёлтыми лилиями — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 50% 0%"></figure>
-        <figure class="fc fc--l"><img src="img/t/fan-ag-004.webp" width="560" height="746" alt="Портрет на летней траве в длинной фате — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 50% 0%"></figure>
-        <figure class="fc fc--far-r"><img src="img/t/fan-ag-031.webp" width="560" height="839" alt="Жених и невеста, чёрно-белый кадр — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 50% 0%"></figure>
-        <figure class="fc fc--r"><img src="img/t/fan-ag-076.webp" width="560" height="839" alt="Портрет с жемчугом и фатой — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 50% 0%"></figure>
+        <!-- веер слева направо: Настя 8, 7, 11 (визитка), 9, 10 — img/fs, кадр по focal.json, лица целиком -->
+        <figure class="fc fc--far-l"><img src="img/t/fan-fs-nastya-8.webp" width="560" height="847" alt="Молодожёны поднимают бокалы за праздничным столом — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 57% 36%"></figure>
+        <figure class="fc fc--l"><img src="img/t/fan-fs-nastya-7.webp" width="560" height="839" alt="Невеста в фате с букетом калл — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 25% 17%"></figure>
+        <figure class="fc fc--far-r"><img src="img/t/fan-fs-nastya-10.webp" width="560" height="747" alt="Пара обнимается на берегу озера — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 47% 38%"></figure>
+        <figure class="fc fc--r"><img src="img/t/fan-fs-nastya-9.webp" width="560" height="840" alt="Девушка в белом платье обнимает собаку — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 45% 12%"></figure>
         <article class="fc fc--c" aria-label="Визитка: Анастасия Агапова, свадебный фотограф">
-          <img class="fc__cover" src="img/t/fan-ag-036.webp" width="600" height="899" alt="Портрет под красной фатой — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 50% 4%">
+          <img class="fc__cover" src="img/t/fan-fs-nastya-11.webp" width="600" height="742" alt="Женский портрет в платье с объёмными рукавами, чёрно-белый кадр — работа Анастасии Агаповой" loading="lazy" decoding="async" style="object-position: 53% 18%">
           <div class="fc__panel">
             <img class="fc__ava" src="img/t/nastya-160.webp" width="160" height="160" alt="">
-            <div><p class="fc__name">Анастасия Агапова</p><p class="fc__role">Свадебный фотограф · Ростов‑на‑Дону</p></div>
+            <div><p class="fc__name">Анастасия Агапова</p><p class="fc__role">Свадебный фотограф<span class="vh"> · </span><br>Ростов‑на‑Дону</p></div>
           </div>
         </article>
         <div class="url-chip" aria-label="Адрес визитки"><svg width="15" height="14" aria-hidden="true"><use href="#i-heart"/></svg><span>eventmatch.ru/<b>agapova</b></span></div>
       </div>
     </div>
 
-    <p class="final__sub" data-rv>Займи свой ник, пока он&nbsp;свободен</p>
-    <form class="nick" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding" method="get" data-nick data-rv novalidate>
+    <p class="final__sub" data-rv style="--d: 900ms">Займи свой ник, пока он&nbsp;свободен</p>
+    <form class="nick" action="https://adhappyday2017-cell.github.io/eventmatch-prototype/#onboarding" method="get" data-nick data-rv style="--d: 1000ms" novalidate>
       <label class="nick__field"><span class="nick__pre">eventmatch.ru/</span><input name="nick" type="text" placeholder="твой-ник" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" aria-label="Придумай ник для адреса визитки" aria-describedby="nick-help"></label>
       <button class="btn btn--lg" type="submit">Создать профиль</button>
     </form>
-    <p class="note final__note" id="nick-help" data-rv>Вход по&nbsp;номеру телефона или Яндекс&nbsp;ID</p>
+    <p class="note final__note" id="nick-help" data-rv style="--d: 1100ms">Вход по&nbsp;номеру телефона или Яндекс&nbsp;ID</p>
   </div>
 </section>
 
