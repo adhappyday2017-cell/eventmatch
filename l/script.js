@@ -1007,8 +1007,8 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
 
 /* ══ блок partner-1 ══ */
 /* Программа для партнёров · вариант L.
-   Сердце медленно переходит с шага на шаг (1 → 4), карточка под ним выпрямляется; после четвёртого гаснет и
-   появляется у первого. Наведение на карточку — сердце переходит к ней и ждёт. Пауза вне экрана и при скрытой
+   Сердце медленно переходит с шага на шаг (1 → 4), карточка под ним выпрямляется; номера пройденных шагов
+   остаются чёрными, после четвёртого все четыре горят, сердце гаснет и появляется у первого — круг заново. Наведение на карточку — сердце переходит к ней и ждёт. Пауза вне экрана и при скрытой
    вкладке; «меньше движения» — без сердца, все шаги видны. */
 (() => {
   'use strict';
@@ -1032,7 +1032,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const show = (k, jump) => {
     const from = cur;
     cur = k;
-    cards.forEach((c, j) => c.classList.toggle('is-on', j === k));
+    cards.forEach((c, j) => { c.classList.toggle('is-on', j === k); c.classList.toggle('is-done', j < k); });
     heart.classList.toggle('is-jump', !!jump);
     put(k);
     heart.classList.add('is-shown');
@@ -1064,7 +1064,7 @@ document.documentElement.classList.add('ready'); // снимает CSS-стра�
   const pause = () => { clearTimeout(timer); timer = 0; };
   const still = () => {                        // «меньше движения»: всё в покое
     pause(); cur = -1;
-    cards.forEach((c) => c.classList.remove('is-on'));
+    cards.forEach((c) => c.classList.remove('is-on', 'is-done'));
     heart.classList.remove('is-shown');
   };
 
